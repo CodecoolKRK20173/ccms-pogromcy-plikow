@@ -1,6 +1,6 @@
 package com.codecool.view;
 
-class ManagerInterface extends Menu{
+public class ManagerInterface extends Menu{
 
     public ManagerInterface() {
         this.label = "Manager";

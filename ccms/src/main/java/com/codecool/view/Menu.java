@@ -1,8 +1,8 @@
 package com.codecool.view;
 
 public abstract class Menu {
-    private View view;
-    private UserInput userInput;
+    private View view = new View();
+    private UserInput userInput = new UserInput();
     protected String[] options;
     protected String label;
 
@@ -22,6 +22,7 @@ public abstract class Menu {
             if (userChoice == 0) {
                 isRunning = false;
             } else {
+                view.print();
                 executeOption(userChoice);
                 view.print();
             }
