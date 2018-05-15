@@ -12,8 +12,8 @@ public abstract class Menu {
         boolean isRunning = true;
         while (isRunning) {
             view.print();
-            view.print(label);
-            view.print("0: quit");
+            view.print(String.format("%s menu", label));
+            view.print("(0) Log out");
             view.printOptions(options);
 
             view.print("Choose option:");
