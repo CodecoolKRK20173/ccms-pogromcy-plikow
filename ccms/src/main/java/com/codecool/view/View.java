@@ -14,7 +14,7 @@ public class View {
         int index = 1;
 
         for (String option: options) {
-            System.out.println(String.format("%d: %s", index, option));
+            System.out.println(String.format("(%d) %s", index, option));
         }
     }
 }
