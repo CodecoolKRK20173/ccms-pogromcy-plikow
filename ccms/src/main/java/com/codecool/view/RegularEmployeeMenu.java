@@ -1,7 +1,7 @@
 package com.codecool.view;
 
-public class RegularEmployeeInterface extends Menu{
-    public RegularEmployeeInterface() {
+public class RegularEmployeeMenu extends Menu{
+    public RegularEmployeeMenu() {
         this.label = "Employee";
         this.options = new String[] {
                 "List students",
