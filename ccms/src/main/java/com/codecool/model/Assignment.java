@@ -15,7 +15,7 @@ public class Assignment {
         this.setGrade(null);
     }
 
-    public boolean getStatus() {
+    public boolean isDone() {
         return status;
     }
 
