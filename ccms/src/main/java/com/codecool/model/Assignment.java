@@ -54,4 +54,18 @@ public class Assignment {
     public void setGrade(Integer grade) {
         this.grade = grade;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append(login
+                    + " " + description
+                    + " " + solution
+                    + " " + status
+                    + " " + grade);
+
+        return result.toString();
+    }
+
 }
+
