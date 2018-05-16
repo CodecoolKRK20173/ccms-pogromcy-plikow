@@ -1,7 +1,7 @@
 package com.codecool.view;
 
-public class MentorInterface extends Menu{
-    public MentorInterface() {
+public class MentorMenu extends Menu{
+    public MentorMenu() {
         this.label = "Mentor";
         this.options = new String[] {
                 "List students",
