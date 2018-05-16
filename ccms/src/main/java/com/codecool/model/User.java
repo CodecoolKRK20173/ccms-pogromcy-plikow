@@ -1,7 +1,7 @@
 package com.codecool.model;
 
 public class User {
-    private String id;
+    private String logIn;
     private String password;
     private String name;
     private String surname;
@@ -9,7 +9,7 @@ public class User {
     private String type;
 
     public User(String id, String password, String name, String surname, String eMail, String type) {
-        this.id = id;
+        this.logIn = id;
         this.password = password;
         this.name = name;
         this.surname = surname;
@@ -17,8 +17,8 @@ public class User {
         this.type = type;
     }
 
-    public String getId() {
-        return id;
+    public String getLogIn() {
+        return logIn;
     }
 
     public String getPassword() {
@@ -39,6 +39,10 @@ public class User {
 
     public String getType() {
         return type;
+    }
+
+    public void setLogIn(String logIn) {
+        this.logIn = logIn;
     }
 
     public void setPassword(String password) {
