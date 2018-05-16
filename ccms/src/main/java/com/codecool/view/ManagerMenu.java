@@ -1,8 +1,8 @@
 package com.codecool.view;
 
-public class ManagerInterface extends Menu{
+public class ManagerMenu extends Menu{
 
-    public ManagerInterface() {
+    public ManagerMenu() {
         this.label = "Manager";
         this.options = new String[] {
                 "List mentors",
