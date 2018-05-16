@@ -1,5 +1,4 @@
-package frompythontojava.onlineshop.part3;
-
+package com.codecool.view;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
