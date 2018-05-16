@@ -1,7 +1,7 @@
 package com.codecool.view;
 
-public class StudentInterface extends Menu {
-    public StudentInterface() {
+public class StudentMenu extends Menu {
+    public StudentMenu() {
         this.label = "Student";
         this.options = new String[] {
                 "View my grades",
