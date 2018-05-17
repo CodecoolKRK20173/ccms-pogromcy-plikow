@@ -1,6 +1,10 @@
 package com.codecool.view;
 
+import com.codecool.controller.StudentController;
+
 public class StudentMenu extends Menu {
+    private StudentController controller;
+
     public StudentMenu() {
         this.label = "Student";
         this.options = new String[] {
@@ -8,6 +12,7 @@ public class StudentMenu extends Menu {
                 "Get assignment",
                 "Submit assignment"
         };
+        this.controller = new StudentController();
     }
 
     protected void executeOption(int option) {
