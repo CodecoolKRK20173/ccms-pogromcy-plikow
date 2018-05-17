@@ -1,9 +1,11 @@
 package com.codecool.view;
 
+import com.codecool.model.AssignmentFileHandler;
 import com.codecool.model.UserFileHandler;
 
 public abstract class Menu {
-    protected UserFileHandler fileHandler = new UserFileHandler();
+    protected UserFileHandler userFileHandler = new UserFileHandler();
+    protected AssignmentFileHandler assignmentFileHandler = new AssignmentFileHandler();
     protected View view = new View();
     protected String[] options;
     protected String label;
@@ -21,7 +23,7 @@ public abstract class Menu {
             int userChoice = UserInput.getInt("Choose option: ");
 
             if (userChoice == 0) {
-                fileHandler.saveUsers();
+                saveAllData();
                 isRunning = false;
             } else {
                 view.print();
@@ -30,5 +32,16 @@ public abstract class Menu {
             }
         }
     }
+
+    protected void saveAllData() {
+        userFileHandler.saveUsers();
+        assignmentFileHandler.saveAssignments();
+    }
+
+    protected void loadAllData() {
+        userFileHandler.loadUsers();
+        assignmentFileHandler.loadAssignments();
+    }
+
 }
 
