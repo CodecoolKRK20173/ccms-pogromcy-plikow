@@ -44,5 +44,6 @@ public class StudentController {
 
     public void submitAssignment(Assignment assignment, String solution) {
         assignment.setSolution(solution);
+        assignment.markDown();
     }
 }
