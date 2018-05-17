@@ -28,7 +28,7 @@ public class LogInMenu extends Menu {
             }
 
             case 3: {
-                menu = new StudentMenu();
+                menu = new StudentMenu("");
                 menu.run();
                 break;
             }

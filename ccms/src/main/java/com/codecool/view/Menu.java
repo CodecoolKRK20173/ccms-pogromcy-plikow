@@ -1,8 +1,7 @@
 package com.codecool.view;
 
 public abstract class Menu {
-    private View view = new View();
-    private UserInput userInput = new UserInput();
+    protected View view = new View();
     protected String[] options;
     protected String label;
 
