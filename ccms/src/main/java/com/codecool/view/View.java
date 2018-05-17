@@ -1,5 +1,6 @@
 package com.codecool.view;
 
+import com.codecool.model.Assignment;
 import com.codecool.model.User;
 
 import java.util.List;
@@ -20,6 +21,15 @@ public class View {
         for (String option: options) {
             System.out.println(String.format("(%d) %s", index++, option));
         }
+    }
+
+    public void printStringList(List<String> list) {
+        for (String s: list) System.out.println(s);
+    }
+
+    public void printAssignmentList(List<Assignment> list) {
+        int index = 1;
+        for (Assignment assignment: list) System.out.println(String.format("(%d) %s", index, assignment.toString()));
     }
 
     public void printList(List<User> list) {
