@@ -82,15 +82,15 @@ public class MentorMenu extends Menu{
 
         String[] informations = new String[5];
 
-        informations[0] = UserInput.getString("Login: ");
+        informations[0] = UserInput.getString("Login");
 
-        informations[1] = UserInput.getString("Password: ");
+        informations[1] = UserInput.getString("Password");
 
-        informations[2] = UserInput.getString("Name: ");
+        informations[2] = UserInput.getString("Name");
 
-        informations[3] = UserInput.getString("Surname: ");
+        informations[3] = UserInput.getString("Surname");
 
-        informations[4] = UserInput.getString("Email: ");
+        informations[4] = UserInput.getString("Email");
 
         return informations;
     }
