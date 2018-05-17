@@ -41,7 +41,7 @@ public class DataContainer {
         return assignments;
     }
 
-    public Assignment createAssignment(String description) {
+    public void createAssignment(String description) {
         Assignment assignment = new Assignment(description);
         assignments.add(assignment);
     }
