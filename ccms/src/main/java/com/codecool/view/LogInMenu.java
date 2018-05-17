@@ -40,7 +40,7 @@ public class LogInMenu extends Menu {
             }
 
             default: {
-                System.out.println("Wrong command");
+                view.print("Wrong command");
                 break;
             }
         }

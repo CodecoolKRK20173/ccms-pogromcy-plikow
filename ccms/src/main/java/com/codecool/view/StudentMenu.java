@@ -37,7 +37,7 @@ public class StudentMenu extends Menu {
                 break;
             }
             default: {
-                System.out.println("Wrong command");
+                view.print("Wrong command");
                 break;
             }
         }
