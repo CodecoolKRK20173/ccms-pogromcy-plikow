@@ -5,7 +5,8 @@ public class StudentMenu extends Menu {
         this.label = "Student";
         this.options = new String[] {
                 "View my grades",
-                "Submit assignment",
+                "Get assignment",
+                "Submit assignment"
         };
     }
 
@@ -16,6 +17,10 @@ public class StudentMenu extends Menu {
                 break;
             }
             case 2: {
+                System.out.println("Get assignment");
+                break;
+            }
+            case 3: {
                 System.out.println("Submit assignment");
                 break;
             }
