@@ -29,44 +29,36 @@ public class ManagerMenu extends Menu{
     protected void executeOption(int option) {
         switch (option) {
             case 1: {
-                view.print("List mentors");
                 view.printList(controller.getMentors());
                 break;
             }
             case 2: {
-                view.print("List students");
                 view.printList(controller.getStudents());
                 break;
             }
             case 3: {
-                view.print("List regular employees");
                 view.printList(controller.getEmployees());
                 break;
             }
             case 4: {
-                view.print("Add mentor");
                 controller.addMentor(collectInformations());
                 break;
             }
             case 5: {
-                view.print("Remove mentor");
                 controller.removeMentor(chooseMentor());
                 break;
             }
             case 6: {
-                view.print("Edit mentor");
                 User mentor = chooseMentor();
                 String[] informations = chooseInformationToChange();
                 controller.editMentor(mentor, informations);
                 break;
             }
             case 7: {
-                view.print("Add regular employee");
                 controller.addEmployee(collectInformations());
                 break;
             }
             case 8: {
-                view.print("Remove regular employee");
                 controller.removeEmployee(chooseEmployee());
                 break;
             }
