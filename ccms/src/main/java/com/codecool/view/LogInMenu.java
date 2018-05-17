@@ -1,7 +1,10 @@
 package com.codecool.view;
 
+import com.codecool.controller.LogInController;
+
 public class LogInMenu extends Menu {
     private Menu menu;
+    private LogInController logInController;
 
     public LogInMenu() {
         this.label = "Log in:";
@@ -11,31 +14,58 @@ public class LogInMenu extends Menu {
             "Log in as student",
             "Log in as regular employee"
         };
+        this.logInController = new LogInController();
     }
 
     protected void executeOption(int option) {
+        String logIn;
+        String password;
         switch (option) {
             case 1: {
-                menu = new ManagerMenu();
-                menu.run();
+                logIn = UserInput.getString("Login: ");
+                password = UserInput.getString("Password");
+                if (logInController.validateUserAccount(logIn, password, "manager")) {
+                    menu = new ManagerMenu();
+                    menu.run();
+                } else {
+                    view.print("Wrong login or password");
+                }
                 break;
             }
 
             case 2: {
-                menu = new MentorMenu();
-                menu.run();
+                logIn = UserInput.getString("Login: ");
+                password = UserInput.getString("Password");
+                if (logInController.validateUserAccount(logIn, password, "mentor")) {
+                    menu = new MentorMenu();
+                    menu.run();
+                } else {
+                    view.print("Wrong login or password");
+                }
                 break;
             }
 
             case 3: {
-                menu = new StudentMenu("");
-                menu.run();
+                logIn = UserInput.getString("Login: ");
+                password = UserInput.getString("Password");
+                if (logInController.validateUserAccount(logIn, password, "student")) {
+                    menu = new StudentMenu("");
+                    menu.run();
+                } else {
+                    view.print("Wrong login or password");
+                }
                 break;
             }
 
             case 4: {
-                menu = new RegularEmployeeMenu();
-                menu.run();
+                logIn = UserInput.getString("Login: ");
+                password = UserInput.getString("Password");
+                if (logInController.validateUserAccount(logIn, password, "regularEmployee")) {
+                    menu = new RegularEmployeeMenu();
+                    menu.run();
+                } else {
+                    view.print("Wrong login or password");
+                }
                 break;
             }
 
