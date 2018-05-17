@@ -12,13 +12,21 @@ public class DataContainer {
     private List<User> managers;
     private List<User> regularEmployees;
     private List<Assignment> assignments;
+    private static DataContainer instance;
 
-    public DataContainer() {
+    private DataContainer() {
         this.students = new ArrayList<User>();
         this.mentors = new ArrayList<User>();
         this.assignments = new ArrayList<Assignment>();
         this.managers = new ArrayList<User>();
         this.regularEmployees = new ArrayList<User>();
+    }
+
+    public static DataContainer getInstance() {
+        if (instance == null) {
+            instance = new DataContainer();
+        }
+        return instance;
     }
 
     public List<User> getStudents() {
