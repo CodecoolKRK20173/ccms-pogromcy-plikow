@@ -1,7 +1,15 @@
 package com.codecool.view;
 
+import com.codecool.controller.RegularEmployeeController;
+
 public class RegularEmployeeMenu extends Menu{
+
+    private RegularEmployeeController controller;
+    private View view;
+
     public RegularEmployeeMenu() {
+        this.view = new View();
+        this.controller = new RegularEmployeeController();
         this.label = "Employee";
         this.options = new String[] {
                 "List students",
@@ -9,13 +17,15 @@ public class RegularEmployeeMenu extends Menu{
     }
 
     protected void executeOption(int option) {
+
         switch (option) {
             case 1: {
-                System.out.println("List students");
+                view.print("List students");
+                view.printList(controller.getStudents());
                 break;
             }
             default: {
-                System.out.println("Wrong command");
+                view.print("Wrong command");
                 break;
             }
         }
