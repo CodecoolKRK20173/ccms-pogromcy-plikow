@@ -2,6 +2,7 @@ package com.codecool.controller;
 
 import com.codecool.model.DataContainer;
 import com.codecool.model.User;
+import com.codecool.view.UserInput;
 
 import java.util.List;
 
@@ -26,12 +27,23 @@ public class ManagerController {
         data.addMentor(informations[0], informations[1], informations[2], informations[3], informations[4]);
     }
 
-    public void removeMentor(User user) {
+    public User getMentor(String login) {
+        return data.getMentor(login);
+    }
 
+    public void removeMentor(User user) {
         data.deleteMentor(user);
     }
 
-    public void editMentor() {
+    public void editMentor(User user, String[] informations) {
+
+        if (informations[0].equals("name")) {
+            user.setName(informations[1]);
+        } else if (informations[0].equals("surname")) {
+            user.setSurname(informations[1]);
+        } else if (informations[0].equals("e-mail")) {
+            user.setEmail(informations[1]);
+        }
     }
 
     public void addEmployee(String[] informations) {
@@ -41,5 +53,13 @@ public class ManagerController {
     public void removeEmployee(User user) {
 
         data.deleteRegularEmployee(user);
+    }
+
+    public List<User> getEmployees() {
+        return data.getRegularEmployees();
+    }
+
+    public User getEmployee(String login) {
+        return data.getRegularEmployee(login);
     }
 }
