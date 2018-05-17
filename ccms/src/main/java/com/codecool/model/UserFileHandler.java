@@ -1,7 +1,4 @@
-package com.codecool.view;
-
-import com.codecool.model.DataContainer;
-import com.codecool.model.User;
+package com.codecool.model;
 
 import java.io.*;
 import java.util.List;

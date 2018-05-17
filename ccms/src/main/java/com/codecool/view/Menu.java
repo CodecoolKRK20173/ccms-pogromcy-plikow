@@ -1,5 +1,7 @@
 package com.codecool.view;
 
+import com.codecool.model.UserFileHandler;
+
 public abstract class Menu {
     protected UserFileHandler fileHandler = new UserFileHandler();
     protected View view = new View();
