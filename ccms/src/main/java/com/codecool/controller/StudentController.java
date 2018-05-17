@@ -16,7 +16,7 @@ public class StudentController {
     }
 
     public List<String> getGrades(String logIn) {
-        Student student = dataContainer.findStudent(logIn);
+        Student student = (Student) dataContainer.getStudent(logIn);
         List<String> result = new ArrayList<String>();
 
         if (student == null) {
@@ -32,6 +32,14 @@ public class StudentController {
 
     public List<Assignment> getAssignmentPool() {
         return dataContainer.getAssignments();
+    }
+
+    public void addAssignment(Assignment assignment, String logIn) {
+        Student student = (Student) dataContainer.getStudent(logIn);
+
+        if (student == null) {return;}
+
+        student.addAssignment(assignment);
     }
 
     public void submitAssignment(Assignment assignment, String solution) {

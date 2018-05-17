@@ -42,6 +42,10 @@ public class Student extends User{
         return unDoneAssignments;
     }
 
+    public void addAssignment(Assignment assignment) {
+        assigments.add(assignment);
+    }
+
     public List<Assignment> getAssigments() {
         return assigments;
     }
