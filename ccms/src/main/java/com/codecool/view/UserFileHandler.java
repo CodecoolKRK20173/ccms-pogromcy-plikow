@@ -8,7 +8,7 @@ import java.io.*;
 import java.util.List;
 
 public class UserFileHandler {
-    private String filePath = "com/codecool/resources/users.csv";
+    private String filePath = "src/main/java/resources/users.csv";
     private DataContainer dataContainer;
 
     public UserFileHandler() {
