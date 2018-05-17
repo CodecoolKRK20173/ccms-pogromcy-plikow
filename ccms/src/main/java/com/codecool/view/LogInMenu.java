@@ -49,7 +49,7 @@ public class LogInMenu extends Menu {
                 logIn = UserInput.getString("Login: ");
                 password = UserInput.getString("Password");
                 if (logInController.validateUserAccount(logIn, password, "student")) {
-                    menu = new StudentMenu("");
+                    menu = new StudentMenu(logIn);
                     menu.run();
                 } else {
                     view.print("Wrong login or password");
