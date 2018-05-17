@@ -65,12 +65,12 @@ public class MentorMenu extends Menu{
         Student student = (Student) user;
         List<Assignment> assignments = student.getDoneAssignment();
         view.printAssignmentList(assignments);
-        int id = UserInput.getInt("Choose assignment id");
+        int id = UserInput.getInt("Choose assignment id") - 1;
         return assignments.get(id);
     }
     private User chooseStudent() {
         view.printList(controller.getStudents());
-        int id = UserInput.getInt("Choose student id");
+        int id = UserInput.getInt("Choose student id") - 1;
         String logIn = controller.getStudents().get(id).getLogIn();
         return controller.getStudent(logIn);
 
@@ -100,7 +100,7 @@ public class MentorMenu extends Menu{
         informations[0] = null;
         while (informations[0] == null) {
             view.printEditMenu();
-            int option = UserInput.getInt("What do you want to change? ");
+            int option = UserInput.getInt("What do you want to change? ") - 1;
             switch (option) {
                 case 1:
                     informations[0] = "name";

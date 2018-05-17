@@ -88,14 +88,14 @@ public class ManagerMenu extends Menu{
 
     private User chooseMentor() {
         view.printList(controller.getMentors());
-        int id = UserInput.getInt("Mentor id: ");
+        int id = UserInput.getInt("Mentor id: ") - 1;
         String login = controller.getMentors().get(id).getLogIn();
         return controller.getMentor(login);
     }
 
     private User chooseEmployee() {
         view.printList(controller.getEmployees());
-        int id = UserInput.getInt("Employee id: ");
+        int id = UserInput.getInt("Employee id: ") - 1;
         String login = controller.getEmployees().get(id).getLogIn();
         return controller.getEmployee(login);
     }
@@ -106,7 +106,7 @@ public class ManagerMenu extends Menu{
         informations[0] = null;
         while (informations[0] == null) {
             view.printEditMenu();
-            int option = UserInput.getInt("What do you want to change? ");
+            int option = UserInput.getInt("What do you want to change? ") - 1;
             switch (option) {
                 case 1:
                     informations[0] = "name";
