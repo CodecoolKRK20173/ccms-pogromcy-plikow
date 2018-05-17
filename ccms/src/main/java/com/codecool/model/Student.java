@@ -16,7 +16,7 @@ public class Student extends User{
         return new String[] {
                 this.getName(),
                 this.getSurname(),
-                this.geteMail()
+                this.getEmail()
         };
     }
 
@@ -40,6 +40,10 @@ public class Student extends User{
             }
         }
         return unDoneAssignments;
+    }
+
+    public void addAssignment(Assignment assignment) {
+        assigments.add(assignment);
     }
 
     public List<Assignment> getAssigments() {
