@@ -67,5 +67,8 @@ public class Assignment {
         return result.toString();
     }
 
+    public Assignment copy() {
+        return new Assignment(description);
+    }
 }
 

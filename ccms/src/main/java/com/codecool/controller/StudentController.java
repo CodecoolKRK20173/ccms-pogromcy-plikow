@@ -39,6 +39,8 @@ public class StudentController {
 
         if (student == null) {return;}
 
+        assignment = assignment.copy();
+        assignment.setLogin(logIn);
         student.addAssignment(assignment);
     }
 

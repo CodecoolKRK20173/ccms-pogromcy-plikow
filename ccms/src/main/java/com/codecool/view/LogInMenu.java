@@ -7,7 +7,7 @@ public class LogInMenu extends Menu {
     private LogInController logInController;
 
     public LogInMenu() {
-        fileHandler.loadUsers();
+        loadAllData();
         this.label = "Log in:";
         this.options = new String[] {
             "Log in as manager",
