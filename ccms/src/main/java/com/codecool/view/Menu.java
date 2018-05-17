@@ -16,8 +16,7 @@ public abstract class Menu {
             view.print("(0) Log out");
             view.printOptions(options);
 
-            view.print("Choose option:");
-            int userChoice = userInput.chooseOption();
+            int userChoice = UserInput.getInt("Choose option: ");
 
             if (userChoice == 0) {
                 isRunning = false;
