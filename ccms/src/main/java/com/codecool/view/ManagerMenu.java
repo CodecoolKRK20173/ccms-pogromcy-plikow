@@ -1,5 +1,4 @@
 package com.codecool.view;
-
 import com.codecool.controller.ManagerController;
 import com.codecool.model.User;
 

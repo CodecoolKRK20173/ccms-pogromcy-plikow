@@ -2,8 +2,6 @@ package com.codecool.controller;
 
 import com.codecool.model.DataContainer;
 import com.codecool.model.User;
-import com.codecool.view.UserInput;
-
 import java.util.List;
 
 public class ManagerController {

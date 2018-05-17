@@ -42,6 +42,5 @@ public abstract class Menu {
         userFileHandler.loadUsers();
         assignmentFileHandler.loadAssignments();
     }
-
 }
 

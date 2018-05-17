@@ -57,7 +57,7 @@ public class DataContainer {
     public void deleteStudent(User student) {
         students.remove(student);
     }
-
+  
     public void deleteMentor(User mentor) {
         mentors.remove(mentor);
     }
@@ -78,7 +78,7 @@ public class DataContainer {
     public void deleteRegularEmployee(User regularEmployee) {
         regularEmployees.remove(regularEmployee);
     }
-
+  
     public List<User> getManagers() {
         return managers;
     }

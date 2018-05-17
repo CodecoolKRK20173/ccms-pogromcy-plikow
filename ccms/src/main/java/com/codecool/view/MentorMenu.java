@@ -1,5 +1,4 @@
 package com.codecool.view;
-
 import com.codecool.controller.MentorController;
 import com.codecool.model.Assignment;
 import com.codecool.model.Student;
@@ -121,5 +120,4 @@ public class MentorMenu extends Menu{
         }
         return informations;
     }
-
 }
