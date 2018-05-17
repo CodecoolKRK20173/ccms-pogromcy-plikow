@@ -4,8 +4,10 @@ import com.codecool.controller.StudentController;
 
 public class StudentMenu extends Menu {
     private StudentController controller;
+    private String logIn;
 
-    public StudentMenu() {
+    public StudentMenu(String logIn) {
+        this.logIn = logIn;
         this.label = "Student";
         this.options = new String[] {
                 "View my grades",
