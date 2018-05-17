@@ -34,6 +34,12 @@ public class View {
 
     public void printList(List<User> list) {
 
-        for (User u : list) System.out.println(u.toString());
+        int index = 0;
+        for (User u : list) System.out.println(String.format("(%d) %s", index++, u.toString()));    }
+
+    public void printEditMenu() {
+        print("1. Name");
+        print("2. Surname");
+        print("3. E - mail");
     }
 }
