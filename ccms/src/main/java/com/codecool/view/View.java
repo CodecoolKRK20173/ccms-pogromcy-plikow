@@ -34,7 +34,7 @@ public class View {
 
     public void printList(List<User> list) {
 
-        int index = 0;
+        int index = 1;
         for (User u : list) System.out.println(String.format("(%d) %s", index++, u.toString()));    }
 
     public void printEditMenu() {

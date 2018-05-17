@@ -29,44 +29,36 @@ public class ManagerMenu extends Menu{
     protected void executeOption(int option) {
         switch (option) {
             case 1: {
-                view.print("List mentors");
                 view.printList(controller.getMentors());
                 break;
             }
             case 2: {
-                view.print("List students");
                 view.printList(controller.getStudents());
                 break;
             }
             case 3: {
-                view.print("List regular employees");
                 view.printList(controller.getEmployees());
                 break;
             }
             case 4: {
-                view.print("Add mentor");
                 controller.addMentor(collectInformations());
                 break;
             }
             case 5: {
-                view.print("Remove mentor");
                 controller.removeMentor(chooseMentor());
                 break;
             }
             case 6: {
-                view.print("Edit mentor");
                 User mentor = chooseMentor();
                 String[] informations = chooseInformationToChange();
                 controller.editMentor(mentor, informations);
                 break;
             }
             case 7: {
-                view.print("Add regular employee");
                 controller.addEmployee(collectInformations());
                 break;
             }
             case 8: {
-                view.print("Remove regular employee");
                 controller.removeEmployee(chooseEmployee());
                 break;
             }
@@ -96,14 +88,14 @@ public class ManagerMenu extends Menu{
 
     private User chooseMentor() {
         view.printList(controller.getMentors());
-        int id = UserInput.getInt("Mentor id: ");
+        int id = UserInput.getInt("Mentor id: ") - 1;
         String login = controller.getMentors().get(id).getLogIn();
         return controller.getMentor(login);
     }
 
     private User chooseEmployee() {
         view.printList(controller.getEmployees());
-        int id = UserInput.getInt("Employee id: ");
+        int id = UserInput.getInt("Employee id: ") - 1;
         String login = controller.getEmployees().get(id).getLogIn();
         return controller.getEmployee(login);
     }
@@ -114,7 +106,7 @@ public class ManagerMenu extends Menu{
         informations[0] = null;
         while (informations[0] == null) {
             view.printEditMenu();
-            int option = UserInput.getInt("What do you want to change? ");
+            int option = UserInput.getInt("What do you want to change? ") - 1;
             switch (option) {
                 case 1:
                     informations[0] = "name";
