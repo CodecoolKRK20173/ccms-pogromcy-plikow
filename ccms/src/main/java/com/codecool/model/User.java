@@ -60,6 +60,7 @@ public class User {
     public void setEmail(String eMail) {
         this.eMail = eMail;
     }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
