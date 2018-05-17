@@ -1,7 +1,6 @@
 package com.codecool.view;
 
 import com.codecool.model.DataContainer;
-import com.codecool.model.Student;
 import com.codecool.model.User;
 
 import java.io.*;
@@ -47,7 +46,7 @@ public class UserFileHandler {
                     information[surName],
                     information[eMail]);
         } else if (information[type].equals("mentor")){
-            dataContainer.addStudent(
+            dataContainer.addMentor(
                     information[logIn],
                     information[password],
                     information[name],
@@ -74,9 +73,8 @@ public class UserFileHandler {
     }
 
     public void saveUsers() {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath)))) {
 
-        try {
-            Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath)));
             writeUsersToFile(dataContainer.getManagers(), writer);
             writeUsersToFile(dataContainer.getMentors(), writer);
             writeUsersToFile(dataContainer.getStudents(), writer);
@@ -100,7 +98,7 @@ public class UserFileHandler {
         result += user.getType() + ",";
         result += user.getName() + ",";
         result += user.getSurname() + ",";
-        result += user.getEmail();
+        result += user.getEmail() + "\n";
 
         return result;
     }
