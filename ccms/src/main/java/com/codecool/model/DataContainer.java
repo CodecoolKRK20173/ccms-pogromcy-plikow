@@ -41,6 +41,11 @@ public class DataContainer {
         return assignments;
     }
 
+    public void createAssignment(String description) {
+        Assignment assignment = new Assignment(description);
+        assignments.add(assignment);
+    }
+
     public void addStudent(String login, String password, String name, String surname, String eMail) {
         User student = new Student(login, password, name, surname, eMail);
         students.add(student);
