@@ -29,7 +29,7 @@ public class View {
 
     public void printAssignmentList(List<Assignment> list) {
         int index = 1;
-        for (Assignment assignment: list) System.out.println(String.format("(%d) %s", index, assignment.toString()));
+        for (Assignment assignment: list) System.out.println(String.format("(%d) %s", index++, assignment.toString()));
     }
 
     public void printList(List<User> list) {
