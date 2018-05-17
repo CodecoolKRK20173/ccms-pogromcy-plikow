@@ -10,9 +10,9 @@ public class Assignment {
     public Assignment(String description) {
         this.setDescription(description);
         this.status = false;
-        this.setLogin("none");
-        this.setSolution("none");
-        this.setGrade(0);
+        this.setLogin(null);
+        this.setSolution(null);
+        this.setGrade(null);
     }
 
     public boolean isDone() {
@@ -67,8 +67,5 @@ public class Assignment {
         return result.toString();
     }
 
-    public Assignment copy() {
-        return new Assignment(description);
-    }
 }
 

@@ -8,22 +8,18 @@ public class UserInput {
     private static Scanner input = new Scanner(System.in);
 
     public static int getInt(String message) {
-
+        clear();
         int userInput = -1;
-        boolean isWrongInput = true;
 
-        while (isWrongInput) {
-            clear();
-            System.out.println(message);
+        System.out.println(message);
+        
+        try {
+            userInput = input.nextInt();
+        }
 
-            try {
-                userInput = input.nextInt();
-                isWrongInput = false;
-            }
-
-            catch (InputMismatchException e) {
-                System.out.println("Type right option!");
-            }
+        catch (InputMismatchException e) {
+            System.out.println("Type right option!");
+            getInt(message);
         }
 
         return userInput;
@@ -34,11 +30,11 @@ public class UserInput {
         float userInput = -1;
 
         System.out.println(message + ": ");
-
+        
         try {
             userInput = input.nextFloat();
         }
-
+        
         catch (InputMismatchException e) {
             System.out.println("Type a number!");
             getFloat(message);
