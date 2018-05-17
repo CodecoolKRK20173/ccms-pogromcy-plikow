@@ -1,4 +1,4 @@
 package com.codecool.controller;
 
-public class CCmsController {
+public class StudentController {
 }
