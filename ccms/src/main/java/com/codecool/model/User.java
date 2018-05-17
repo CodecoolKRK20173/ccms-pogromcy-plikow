@@ -8,8 +8,8 @@ public class User {
     private String eMail;
     private String type;
 
-    public User(String id, String password, String name, String surname, String eMail, String type) {
-        this.logIn = id;
+    public User(String logIn, String password, String name, String surname, String eMail, String type) {
+        this.logIn = logIn;
         this.password = password;
         this.name = name;
         this.surname = surname;
@@ -33,7 +33,7 @@ public class User {
         return surname;
     }
 
-    public String geteMail() {
+    public String getEmail() {
         return eMail;
     }
 
@@ -57,7 +57,17 @@ public class User {
         this.surname = surname;
     }
 
-    public void seteMail(String eMail) {
+    public void setEmail(String eMail) {
         this.eMail = eMail;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(name
+                + " " + surname
+                + " " + eMail
+                + " " + type);
+        return sb.toString();
     }
 }

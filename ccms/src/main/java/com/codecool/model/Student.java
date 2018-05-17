@@ -16,7 +16,7 @@ public class Student extends User{
         return new String[] {
                 this.getName(),
                 this.getSurname(),
-                this.geteMail()
+                this.getEmail()
         };
     }
 
