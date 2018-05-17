@@ -9,7 +9,7 @@ public class UserInput {
 
     public static int getInt(String message) {
 
-        int userInput = -1;
+        int userInput = 0;
         boolean isWrongInput = true;
 
         while (isWrongInput) {
