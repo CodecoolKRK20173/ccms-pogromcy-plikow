@@ -34,14 +34,9 @@ public class ManagerController {
     }
 
     public void editMentor(User user, String[] informations) {
-
-        if (informations[0].equals("name")) {
-            user.setName(informations[1]);
-        } else if (informations[0].equals("surname")) {
-            user.setSurname(informations[1]);
-        } else if (informations[0].equals("e-mail")) {
-            user.setEmail(informations[1]);
-        }
+        user.setName(informations[0]);
+        user.setSurname(informations[1]);
+        user.setEmail(informations[2]);
     }
 
     public void addEmployee(String[] informations) {
@@ -60,4 +55,13 @@ public class ManagerController {
     public User getEmployee(String login) {
         return data.getRegularEmployee(login);
     }
+
+    public String[] getContactInformations(User user) {
+        return new String[]{
+                user.getName(),
+                user.getSurname(),
+                user.getEmail()
+        };
+    }
+
 }

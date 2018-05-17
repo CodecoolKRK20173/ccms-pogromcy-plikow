@@ -37,7 +37,9 @@ public class View {
         int index = 1;
         for (User u : list) System.out.println(String.format("(%d) %s", index++, u.toString()));    }
 
-    public void printEditMenu() {
+    public void printEditMenu(String[] informations) {
+        System.out.println(String.format("%s, %s, %s\n", informations[0], informations[1], informations[2]));
+        print("0. Finish");
         print("1. Name");
         print("2. Surname");
         print("3. E - mail");

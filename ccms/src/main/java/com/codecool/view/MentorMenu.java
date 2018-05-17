@@ -35,7 +35,9 @@ public class MentorMenu extends Menu{
                 break;
             }
             case 3: {
-                controller.gradeAssignment(chooseAssignment(chooseStudent()), grade());
+                Student student = (Student) chooseStudent();
+                Assignment assignment =chooseAssignment(student);
+                if (assignment != null) controller.gradeAssignment(assignment, grade());
                 break;
             }
             case 4: {
@@ -47,11 +49,14 @@ public class MentorMenu extends Menu{
                 break;
             }
             case 6: {
-                controller.removeStudent(chooseStudent());
+                Student student = (Student) chooseStudent();
+                if (student != null) controller.removeStudent(student);
                 break;
             }
             case 7: {
-                controller.editStudent(chooseStudent(), chooseInformationToChange());
+                Student student = (Student) chooseStudent();
+                String[] contactInformations = controller.getContactInformations(student);
+                if (student != null) controller.editStudent(student, chooseInformationToChange(contactInformations));
                 break;
             }
             default: {
@@ -65,11 +70,23 @@ public class MentorMenu extends Menu{
         List<Assignment> assignments = student.getDoneAssignment();
         view.printAssignmentList(assignments);
         int id = UserInput.getInt("Choose assignment id") - 1;
+
+        if (id >= assignments.size() || id < 0) {
+            view.print("Wrong choice");
+            return null;
+        }
+
         return assignments.get(id);
     }
     private User chooseStudent() {
         view.printList(controller.getStudents());
         int id = UserInput.getInt("Choose student id") - 1;
+
+        if (id >= controller.getStudents().size() || id < 0) {
+            view.print("Wrong choice");
+            return null;
+        }
+
         String logIn = controller.getStudents().get(id).getLogIn();
         return controller.getStudent(logIn);
 
@@ -93,31 +110,38 @@ public class MentorMenu extends Menu{
 
         return informations;
     }
-    private String[] chooseInformationToChange() {
+    private String[] chooseInformationToChange(String[] contactInformations) {
 
         String[] informations = new String[2];
         informations[0] = null;
-        while (informations[0] == null) {
-            view.printEditMenu();
-            int option = UserInput.getInt("What do you want to change? ") - 1;
+        boolean isEditing = true;
+        while (isEditing) {
+            view.printEditMenu(contactInformations);
+            int option = UserInput.getInt("What do you want to change? ");
             switch (option) {
+                case 0: {
+                    isEditing = false;
+                    break;
+                }
+
                 case 1:
                     informations[0] = "name";
-                    informations[1] = UserInput.getString("New name");
+                    contactInformations[0] = UserInput.getString("New name");
                     break;
                 case 2:
                     informations[0] = "surname";
-                    informations[1] = UserInput.getString("New Surname");
+                    contactInformations[1] = UserInput.getString("New Surname");
                     break;
                 case 3:
                     informations[0] = "e-mail";
-                    informations[1] = UserInput.getString("New E-mail");
+                    contactInformations[2] = UserInput.getString("New E-mail");
                     break;
                 default:
                     view.print("Wrong option!");
                     break;
             }
         }
-        return informations;
+        if (informations[0] == null) {return null;}
+        return contactInformations;
     }
 }
