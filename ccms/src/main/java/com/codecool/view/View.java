@@ -1,5 +1,9 @@
 package com.codecool.view;
 
+import com.codecool.model.User;
+
+import java.util.List;
+
 public class View {
 
     public void print() {
@@ -16,5 +20,10 @@ public class View {
         for (String option: options) {
             System.out.println(String.format("(%d) %s", index++, option));
         }
+    }
+
+    public void printList(List<User> list) {
+
+        for (User u : list) System.out.println(u.toString());
     }
 }
