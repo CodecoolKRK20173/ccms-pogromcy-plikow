@@ -28,12 +28,12 @@ public class StudentMenu extends Menu {
             }
             case 2: {
                 Assignment assignment = chooseObjectFromList(controller.getAssignmentPool());
-                controller.addAssignment(assignment, logIn);
+                if (assignment != null) controller.addAssignment(assignment, logIn);
                 break;
             }
             case 3: {
-                Assignment assignment = chooseObjectFromList(controller.getAssignmentPool());
-                controller.submitAssignment(assignment, UserInput.getString("Solution: "));
+                Assignment assignment = chooseObjectFromList(controller.getAssignments(logIn));
+                if (assignment != null) controller.submitAssignment(assignment, UserInput.getString("Solution: "));
                 break;
             }
             default: {
@@ -46,6 +46,11 @@ public class StudentMenu extends Menu {
     private Assignment chooseObjectFromList(List<Assignment> list) {
         view.printAssignmentList(list);
         int userChoice = UserInput.getInt("Choose assignment:") - 1;
+
+        if (userChoice >= list.size() || userChoice < 0) {
+            view.print("Wrong choice");
+            return null;
+        }
         return list.get(userChoice);
     }
 }
