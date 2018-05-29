@@ -1,5 +1,6 @@
 package com.codecool.model;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +104,16 @@ public class DataContainer {
         }
         return null;
     }
+
+    public User getUser(String logIn, List<User> users) {
+        for (User user : users) {
+            if (user.getLogIn().equals(logIn)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     public User getRegularEmployee(String logIn) {
         for (User regularEmployee : regularEmployees) {
             if (regularEmployee.getLogIn().equals(logIn)) {
