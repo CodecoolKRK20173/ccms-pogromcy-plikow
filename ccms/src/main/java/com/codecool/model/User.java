@@ -6,15 +6,15 @@ public class User {
     private String logIn;
     private String password;
     private String name;
-    private String surName; // refactor
+    private String surname;
     private String eMail;
     private String role;
 
-    public User(String logIn, String password, String name, String surName, String eMail, String role) {
+    public User(String logIn, String password, String name, String surname, String eMail, String role) {
         this.logIn = logIn;
         this.password = password;
         this.name = name;
-        this.surName = surName;
+        this.surname = surname;
         this.eMail = eMail;
         this.role = role;
     }
@@ -31,8 +31,8 @@ public class User {
         return name;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getSurname() {
+        return surname;
     }
 
     public String getEmail() {
@@ -43,10 +43,10 @@ public class User {
         return role;
     }
 
-    public LinkedHashMap getContactDataMap() {
+    public LinkedHashMap getContactData() {
         LinkedHashMap<String,String> result = new LinkedHashMap<>();
         result.put("name", this.name);
-        result.put("surName", this.surName);
+        result.put("surname", this.surname);
         result.put("email", this.eMail);
         return result;
     }
@@ -63,8 +63,8 @@ public class User {
         this.name = name;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public void setEmail(String eMail) {
@@ -75,7 +75,7 @@ public class User {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name
-                + " " + surName
+                + " " + surname
                 + " " + eMail
                 + " " + role);
         return sb.toString();

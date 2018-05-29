@@ -3,6 +3,7 @@ package com.codecool.controller;
 import com.codecool.model.DataContainer;
 import com.codecool.model.User;
 import java.util.List;
+import java.util.Map;
 
 public class ManagerController {
 
@@ -33,11 +34,12 @@ public class ManagerController {
         data.deleteMentor(user);
     }
 
-    public void editMentor(User user, String[] informations) {
-        user.setName(informations[0]);
-        user.setSurName(informations[1]);
-        user.setEmail(informations[2]);
+    public void editMentor(User mentor, Map<String,String> userData) {
+        mentor.setName(userData.get("name"));
+        mentor.setSurname(userData.get("surname"));
+        mentor.setEmail(userData.get("email"));
     }
+
 
     public void addEmployee(String[] informations) {
         data.addRegularEmployee(informations[0], informations[1], informations[2], informations[3], informations[4]);
@@ -55,13 +57,4 @@ public class ManagerController {
     public User getEmployee(String login) {
         return data.getRegularEmployee(login);
     }
-
-    public String[] getContactInformations(User user) {
-        return new String[]{
-                user.getName(),
-                user.getSurName(),
-                user.getEmail()
-        };
-    }
-
 }

@@ -2,9 +2,6 @@ package com.codecool.view;
 import com.codecool.controller.ManagerController;
 import com.codecool.model.User;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ManagerMenu extends Menu{
 
     private ManagerController controller;
@@ -50,10 +47,7 @@ public class ManagerMenu extends Menu{
             }
             case 6: {
                 User mentor = chooseMentor();
-                if (mentor != null) {
-                    String[] informations = chooseInformationToChange(controller.getContactInformations(mentor));
-                    if (informations != null) controller.editMentor(mentor, informations);
-                }
+                if (mentor != null) controller.editMentor(mentor, editUser(mentor.getContactData()));
                 break;
             }
             case 7: {

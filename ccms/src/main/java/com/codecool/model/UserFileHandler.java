@@ -94,7 +94,7 @@ public class UserFileHandler {
         result += user.getPassword() + ",";
         result += user.getRole() + ",";
         result += user.getName() + ",";
-        result += user.getSurName() + ",";
+        result += user.getSurname() + ",";
         result += user.getEmail() + "\n";
 
         return result;

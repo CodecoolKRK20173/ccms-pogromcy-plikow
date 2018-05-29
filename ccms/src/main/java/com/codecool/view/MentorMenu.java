@@ -56,7 +56,7 @@ public class MentorMenu extends Menu{
             }
             case 7: {
                 Student student = (Student) chooseStudent();
-                if (student != null) controller.editStudent(student, editUser(student.getContactDataMap()));
+                if (student != null) controller.editStudent(student, editUser(student.getContactData()));
                 break;
             }
             default: {
