@@ -9,6 +9,7 @@ import java.util.List;
 public class MentorMenu extends Menu{
     private View view;
     private MentorController controller;
+
     public MentorMenu() {
         this.view = new View();
         this.controller = new MentorController();
@@ -55,8 +56,7 @@ public class MentorMenu extends Menu{
             }
             case 7: {
                 Student student = (Student) chooseStudent();
-                String[] contactInformations = controller.getContactInformations(student);
-                if (student != null) controller.editStudent(student, chooseInformationToChange(contactInformations));
+                if (student != null) controller.editStudent(student, editUser(student.getContactDataMap()));
                 break;
             }
             default: {
@@ -109,39 +109,5 @@ public class MentorMenu extends Menu{
         informations[4] = UserInput.getString("Email");
 
         return informations;
-    }
-    private String[] chooseInformationToChange(String[] contactInformations) {
-
-        String[] informations = new String[2];
-        informations[0] = null;
-        boolean isEditing = true;
-        while (isEditing) {
-            view.printEditMenu(contactInformations);
-            int option = UserInput.getInt("What do you want to change? ");
-            switch (option) {
-                case 0: {
-                    isEditing = false;
-                    break;
-                }
-
-                case 1:
-                    informations[0] = "name";
-                    contactInformations[0] = UserInput.getString("New name");
-                    break;
-                case 2:
-                    informations[0] = "surname";
-                    contactInformations[1] = UserInput.getString("New Surname");
-                    break;
-                case 3:
-                    informations[0] = "e-mail";
-                    contactInformations[2] = UserInput.getString("New E-mail");
-                    break;
-                default:
-                    view.print("Wrong option!");
-                    break;
-            }
-        }
-        if (informations[0] == null) {return null;}
-        return contactInformations;
     }
 }
