@@ -31,14 +31,16 @@ public class MentorController {
         data.deleteStudent(student);
     }
     public void editStudent(User student, String[] informations) {
-        if (informations[0].equals("name")) {
-            student.setName(informations[1]);
-        } else if (informations[0].equals("surname")) {
-            student.setSurname(informations[1]);
-        } else if (informations[0].equals("e-mail")) {
-            student.setEmail(informations[1]);
-        }
+        student.setName(informations[0]);
+        student.setSurname(informations[1]);
+        student.setEmail(informations[2]);
     }
 
-
+    public String[] getContactInformations(User user) {
+        return new String[]{
+                user.getName(),
+                user.getSurname(),
+                user.getEmail()
+        };
+    }
 }
