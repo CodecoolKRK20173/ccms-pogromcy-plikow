@@ -1,20 +1,22 @@
 package com.codecool.model;
 
+import java.util.LinkedHashMap;
+
 public class User {
     private String logIn;
     private String password;
     private String name;
-    private String surname;
+    private String surName; // refactor
     private String eMail;
-    private String type;
+    private String role;
 
-    public User(String logIn, String password, String name, String surname, String eMail, String type) {
+    public User(String logIn, String password, String name, String surName, String eMail, String role) {
         this.logIn = logIn;
         this.password = password;
         this.name = name;
-        this.surname = surname;
+        this.surName = surName;
         this.eMail = eMail;
-        this.type = type;
+        this.role = role;
     }
 
     public String getLogIn() {
@@ -29,16 +31,24 @@ public class User {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getSurName() {
+        return surName;
     }
 
     public String getEmail() {
         return eMail;
     }
 
-    public String getType() {
-        return type;
+    public String getRole() {
+        return role;
+    }
+
+    public LinkedHashMap getContactDataMap() {
+        LinkedHashMap<String,String> result = new LinkedHashMap<>();
+        result.put("name", this.name);
+        result.put("surName", this.surName);
+        result.put("email", this.eMail);
+        return result;
     }
 
     public void setLogIn(String logIn) {
@@ -53,8 +63,8 @@ public class User {
         this.name = name;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSurName(String surName) {
+        this.surName = surName;
     }
 
     public void setEmail(String eMail) {
@@ -65,9 +75,9 @@ public class User {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(name
-                + " " + surname
+                + " " + surName
                 + " " + eMail
-                + " " + type);
+                + " " + role);
         return sb.toString();
     }
 }

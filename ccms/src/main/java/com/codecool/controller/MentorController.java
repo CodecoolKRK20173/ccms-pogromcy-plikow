@@ -34,14 +34,14 @@ public class MentorController {
 
     public void editStudent(User student, Map<String,String> userData) {
         student.setName(userData.get("name"));
-        student.setSurname(userData.get("surname"));
+        student.setSurName(userData.get("surname"));
         student.setEmail(userData.get("email"));
     }
 
     public String[] getContactInformations(User user) {
         return new String[]{
                 user.getName(),
-                user.getSurname(),
+                user.getSurName(),
                 user.getEmail()
         };
     }

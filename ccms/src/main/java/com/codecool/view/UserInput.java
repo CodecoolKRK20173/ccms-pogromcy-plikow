@@ -60,7 +60,7 @@ public class UserInput {
         boolean result = false;
 
         while (unvalidInput) {
-            System.out.format("%s?(y/n)");
+            System.out.format("%s?(y/n)", message);
             String userInput = input.nextLine();
 
             if (userInput.equals("y")){

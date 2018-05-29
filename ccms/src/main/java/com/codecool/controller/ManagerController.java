@@ -35,7 +35,7 @@ public class ManagerController {
 
     public void editMentor(User user, String[] informations) {
         user.setName(informations[0]);
-        user.setSurname(informations[1]);
+        user.setSurName(informations[1]);
         user.setEmail(informations[2]);
     }
 
@@ -59,7 +59,7 @@ public class ManagerController {
     public String[] getContactInformations(User user) {
         return new String[]{
                 user.getName(),
-                user.getSurname(),
+                user.getSurName(),
                 user.getEmail()
         };
     }

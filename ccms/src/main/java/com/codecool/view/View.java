@@ -53,16 +53,16 @@ public class View {
 
         print("0. Finish");
         for (Map.Entry<String, String> entry : data.entrySet()) {
-            System.out.format("%d: %s", i++, entry.getKey());
+            System.out.format("%d: %s\n", i++, entry.getKey());
         }
     }
 
-    private String printMapInLine(Map<String, String> map) {
-        String result = "";
+    private void printMapInLine(Map<String, String> map) {
+        String str = "";
 
         for (Map.Entry<String, String> entry : map.entrySet()) {
-            result += String.format("%s: %s     ", entry.getKey(), entry.getValue());
+            str += String.format("%s: %s     ", entry.getKey(), entry.getValue());
         }
-        return result;
+        System.out.println(str);
     }
 }

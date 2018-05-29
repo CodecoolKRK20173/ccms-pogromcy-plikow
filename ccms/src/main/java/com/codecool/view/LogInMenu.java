@@ -23,6 +23,7 @@ public class LogInMenu extends Menu {
         String password;
         switch (option) {
             case 1: {
+                // extract to method
                 logIn = UserInput.getString("Login: ");
                 password = UserInput.getString("Password");
                 if (logInController.validateUserAccount(logIn, password, "manager")) {
