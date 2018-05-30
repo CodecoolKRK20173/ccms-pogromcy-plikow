@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Student extends User{
-    private final static String type = "student";
+    private final static String role = "student";
     private List<Assignment> assigments;
 
     public Student(String logIn, String password, String name, String surname, String eMail) {
-        super(logIn, password, name, surname, eMail, type);
+        super(logIn, password, name, surname, eMail, role);
         assigments = new ArrayList<Assignment>();
     }
 

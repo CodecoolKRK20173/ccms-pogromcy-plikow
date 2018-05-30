@@ -21,14 +21,14 @@ public class LogInController {
 
         if (!user.getPassword().equals(password)) {return null;}
 
-        return createMenu(user.getType(), logIn);
+        return createMenu(user.getRole(), logIn);
     }
 
-    private Menu createMenu(String type, String logIn) {
-        if (type.equals("manager")) return new ManagerMenu();
-        else if (type.equals("mentor")) return new MentorMenu();
-        else if (type.equals("student")) return new StudentMenu(logIn);
-        else if (type.equals("mentor")) return new RegularEmployeeMenu();
+    private Menu createMenu(String role, String logIn) {
+        if (role.equals("manager")) return new ManagerMenu();
+        else if (role.equals("mentor")) return new MentorMenu();
+        else if (role.equals("student")) return new StudentMenu(logIn);
+        else if (role.equals("mentor")) return new RegularEmployeeMenu();
         else return null;
     }
 

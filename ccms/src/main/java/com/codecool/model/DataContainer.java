@@ -99,7 +99,6 @@ public class DataContainer {
     public User getMentor(String logIn) {
         for (User mentor : mentors) {
             if (mentor.getLogIn().equals(logIn)) {
-                return mentor;
             }
         }
         return null;
