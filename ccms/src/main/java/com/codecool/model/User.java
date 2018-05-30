@@ -1,20 +1,22 @@
 package com.codecool.model;
 
+import java.util.LinkedHashMap;
+
 public class User {
     private String logIn;
     private String password;
     private String name;
     private String surname;
     private String eMail;
-    private String type;
+    private String role;
 
-    public User(String logIn, String password, String name, String surname, String eMail, String type) {
+    public User(String logIn, String password, String name, String surname, String eMail, String role) {
         this.logIn = logIn;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.eMail = eMail;
-        this.type = type;
+        this.role = role;
     }
 
     public String getLogIn() {
@@ -37,8 +39,16 @@ public class User {
         return eMail;
     }
 
-    public String getType() {
-        return type;
+    public String getRole() {
+        return role;
+    }
+
+    public LinkedHashMap getContactData() {
+        LinkedHashMap<String,String> result = new LinkedHashMap<>();
+        result.put("name", this.name);
+        result.put("surname", this.surname);
+        result.put("email", this.eMail);
+        return result;
     }
 
     public void setLogIn(String logIn) {
@@ -67,7 +77,7 @@ public class User {
         sb.append(name
                 + " " + surname
                 + " " + eMail
-                + " " + type);
+                + " " + role);
         return sb.toString();
     }
 }

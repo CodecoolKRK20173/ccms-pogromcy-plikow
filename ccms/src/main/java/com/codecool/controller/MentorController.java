@@ -5,6 +5,7 @@ import com.codecool.model.DataContainer;
 import com.codecool.model.User;
 
 import java.util.List;
+import java.util.Map;
 
 public class MentorController {
     private DataContainer data;
@@ -30,17 +31,10 @@ public class MentorController {
     public void removeStudent(User student) {
         data.deleteStudent(student);
     }
-    public void editStudent(User student, String[] informations) {
-        student.setName(informations[0]);
-        student.setSurname(informations[1]);
-        student.setEmail(informations[2]);
-    }
 
-    public String[] getContactInformations(User user) {
-        return new String[]{
-                user.getName(),
-                user.getSurname(),
-                user.getEmail()
-        };
+    public void editStudent(User student, Map<String,String> userData) {
+        student.setName(userData.get("name"));
+        student.setSurname(userData.get("surname"));
+        student.setEmail(userData.get("email"));
     }
 }

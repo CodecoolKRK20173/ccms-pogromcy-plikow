@@ -92,7 +92,7 @@ public class UserFileHandler {
 
         result += user.getLogIn() + ",";
         result += user.getPassword() + ",";
-        result += user.getType() + ",";
+        result += user.getRole() + ",";
         result += user.getName() + ",";
         result += user.getSurname() + ",";
         result += user.getEmail() + "\n";

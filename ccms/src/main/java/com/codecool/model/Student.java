@@ -12,14 +12,6 @@ public class Student extends User{
         assigments = new ArrayList<Assignment>();
     }
 
-    public String[] getContactData() {
-        return new String[] {
-                this.getName(),
-                this.getSurname(),
-                this.getEmail()
-        };
-    }
-
     public List<Assignment> getDoneAssignment() {
         List<Assignment> doneAssigments = new ArrayList<Assignment>();
 

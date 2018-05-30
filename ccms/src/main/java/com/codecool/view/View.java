@@ -3,7 +3,9 @@ package com.codecool.view;
 import com.codecool.model.Assignment;
 import com.codecool.model.User;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class View {
 
@@ -43,5 +45,24 @@ public class View {
         print("1. Name");
         print("2. Surname");
         print("3. E - mail");
+    }
+
+    public void printEditMenu(Map<String, String> data) {
+        int i = 1;
+        printMapInLine(data);
+
+        print("0. Finish");
+        for (Map.Entry<String, String> entry : data.entrySet()) {
+            System.out.format("%d: %s\n", i++, entry.getKey());
+        }
+    }
+
+    private void printMapInLine(Map<String, String> map) {
+        String str = "";
+
+        for (Map.Entry<String, String> entry : map.entrySet()) {
+            str += String.format("%s: %s     ", entry.getKey(), entry.getValue());
+        }
+        System.out.println(str);
     }
 }
