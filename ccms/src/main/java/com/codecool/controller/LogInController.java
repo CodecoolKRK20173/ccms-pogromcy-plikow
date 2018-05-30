@@ -2,6 +2,10 @@ package com.codecool.controller;
 
 import com.codecool.model.DataContainer;
 import com.codecool.model.User;
+import com.codecool.view.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LogInController {
     private DataContainer dataContainer;
@@ -10,20 +14,40 @@ public class LogInController {
         dataContainer = DataContainer.getInstance();
     }
 
-    public boolean validateUserAccount(String logIn, String password, String type) {
-        User user = findUser(logIn, type);
+    public Menu verifyUserAccount(String logIn, String password) {
+        User user = findUser(logIn);
 
-        if (user == null) {return false;}
+        if (user == null) {return null;}
 
-        if (!user.getPassword().equals(password)) {return false;}
+        if (!user.getPassword().equals(password)) {return null;}
 
-        return true;
+        return createMenu(user.getType(), logIn);
     }
 
-    private User findUser(String logIn, String type) {
-        if (type.equals("manager")) {return dataContainer.getManager(logIn);}
-        else if (type.equals("mentor")){return dataContainer.getMentor(logIn);}
-        else if (type.equals("student")){return dataContainer.getStudent(logIn);}
-        else {return dataContainer.getRegularEmployee(logIn);}
+    private Menu createMenu(String type, String logIn) {
+        if (type.equals("manager")) return new ManagerMenu();
+        else if (type.equals("mentor")) return new MentorMenu();
+        else if (type.equals("student")) return new StudentMenu(logIn);
+        else if (type.equals("mentor")) return new RegularEmployeeMenu();
+        else return null;
+    }
+
+    private User findUser(String logIn) {
+        for (List<User> users: collectUsers()) {
+            User user = dataContainer.getUser(logIn, users);
+            if (user != null) return user;
+        }
+        return null;
+    }
+
+    private List<List<User>> collectUsers() {
+        List<List<User>> users = new ArrayList<>();
+
+        users.add(dataContainer.getManagers());
+        users.add(dataContainer.getMentors());
+        users.add(dataContainer.getStudents());
+        users.add(dataContainer.getRegularEmployees());
+
+        return users;
     }
 }

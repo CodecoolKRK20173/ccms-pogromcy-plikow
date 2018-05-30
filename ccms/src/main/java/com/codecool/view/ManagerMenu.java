@@ -44,13 +44,16 @@ public class ManagerMenu extends Menu{
                 break;
             }
             case 5: {
-                controller.removeMentor(chooseMentor());
+                User mentor = chooseMentor();
+                if (mentor != null) controller.removeMentor(mentor);
                 break;
             }
             case 6: {
                 User mentor = chooseMentor();
-                String[] informations = chooseInformationToChange();
-                controller.editMentor(mentor, informations);
+                if (mentor != null) {
+                    String[] informations = chooseInformationToChange(controller.getContactInformations(mentor));
+                    if (informations != null) controller.editMentor(mentor, informations);
+                }
                 break;
             }
             case 7: {
@@ -58,7 +61,8 @@ public class ManagerMenu extends Menu{
                 break;
             }
             case 8: {
-                controller.removeEmployee(chooseEmployee());
+                User employee = chooseEmployee();
+                if (employee != null) controller.removeEmployee(employee);
                 break;
             }
             default: {
@@ -88,6 +92,12 @@ public class ManagerMenu extends Menu{
     private User chooseMentor() {
         view.printList(controller.getMentors());
         int id = UserInput.getInt("Mentor id: ") - 1;
+
+        if (id >= controller.getMentors().size() || id < 0) {
+            view.print("Wrong choice");
+            return null;
+        }
+
         String login = controller.getMentors().get(id).getLogIn();
         return controller.getMentor(login);
     }
@@ -95,35 +105,50 @@ public class ManagerMenu extends Menu{
     private User chooseEmployee() {
         view.printList(controller.getEmployees());
         int id = UserInput.getInt("Employee id: ") - 1;
+
+        if (id >= controller.getEmployees().size() || id < 0) {
+            view.print("Wrong choice");
+            return null;
+        }
+
         String login = controller.getEmployees().get(id).getLogIn();
         return controller.getEmployee(login);
     }
 
-    private String[] chooseInformationToChange() {
+    private String[] chooseInformationToChange(String[] contactInformations) {
 
         String[] informations = new String[2];
         informations[0] = null;
-        while (informations[0] == null) {
-            view.printEditMenu();
-            int option = UserInput.getInt("What do you want to change? ") - 1;
+        boolean isEditing = true;
+        while (isEditing) {
+            view.printEditMenu(contactInformations);
+            int option = UserInput.getInt("What do you want to change? ");
             switch (option) {
+                case 0: {
+                    isEditing = false;
+                    break;
+                }
                 case 1:
                     informations[0] = "name";
-                    informations[1] = UserInput.getString("New name");
+//                    informations[1] = UserInput.getString("New name");
+                    contactInformations[0] = UserInput.getString("New name");
                     break;
                 case 2:
                     informations[0] = "surname";
-                    informations[1] = UserInput.getString("New Surname");
+//                    informations[1] = UserInput.getString("New Surname");
+                    contactInformations[1] = UserInput.getString("New Surname");
                     break;
                 case 3:
                     informations[0] = "e-mail";
-                    informations[1] = UserInput.getString("New E-mail");
+//                    informations[1] = UserInput.getString("New E-mail");
+                    contactInformations[2] = UserInput.getString("New E-mail");
                     break;
                 default:
                     view.print("Wrong option!");
                     break;
             }
         }
-        return informations;
+        if (informations[0] == null) {return null;}
+        return contactInformations;
     }
 }

@@ -30,6 +30,11 @@ public class StudentController {
         return result;
     }
 
+    public List<Assignment> getAssignments(String logIn) {
+        Student student = (Student) dataContainer.getStudent(logIn);
+        return student.getAssigments();
+    }
+
     public List<Assignment> getAssignmentPool() {
         return dataContainer.getAssignments();
     }
