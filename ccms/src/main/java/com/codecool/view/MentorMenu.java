@@ -49,7 +49,7 @@ public class MentorMenu extends Menu{
                 if (controller.addStudent(collectInformations())) {
                     view.print("Successfully added");
                 } else {
-                    view.print("Login is not Unique");
+                    view.print("Login is not Unique or error occurred");
                 }
                 break;
             }

@@ -1,6 +1,9 @@
 package com.codecool.model;
 
+import com.codecool.security.PasswordSecurity;
+
 import javax.jws.soap.SOAPBinding;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,13 +56,17 @@ public class DataContainer {
 
     public boolean addStudent(String login, String password, String name, String surname, String eMail) {
         if (!isLoginUnique(login)) return false;
-        User student = new Student(login, password, name, surname, eMail);
+        String hashPassword = getHashPassword(login, password);
+        if (hashPassword == null) return false;
+        User student = new Student(login, hashPassword, name, surname, eMail);
         students.add(student);
         return true;
     }
     public boolean addMentor(String login, String password, String name, String surname, String eMail) {
         if (!isLoginUnique(login)) return false;
-        User mentor = new User(login, password, name, surname, eMail, MENTOR);
+        String hashPassword = getHashPassword(login, password);
+        if (hashPassword == null) return false;
+        User mentor = new User(login, hashPassword, name, surname, eMail, MENTOR);
         mentors.add(mentor);
         return true;
     }
@@ -73,7 +80,9 @@ public class DataContainer {
 
     public boolean addManager(String login, String password, String name, String surname, String eMail) {
         if (!isLoginUnique(login)) return false;
-        User manager = new User(login, password, name, surname, eMail, MANAGER);
+        String hashPassword = getHashPassword(login, password);
+        if (hashPassword == null) return false;
+        User manager = new User(login, hashPassword, name, surname, eMail, MANAGER);
         managers.add(manager);
         return true;
     }
@@ -84,7 +93,9 @@ public class DataContainer {
 
     public boolean addRegularEmployee(String login, String password, String name, String surname, String eMail) {
         if (!isLoginUnique(login)) return false;
-        User regularEmployee = new User(login, password, name, surname, eMail, REGULAR_EMPLOYEE);
+        String hashPassword = getHashPassword(login, password);
+        if (hashPassword == null) return false;
+        User regularEmployee = new User(login, hashPassword, name, surname, eMail, REGULAR_EMPLOYEE);
         regularEmployees.add(regularEmployee);
         return true;
     }
@@ -170,5 +181,17 @@ public class DataContainer {
 
     public Map<String, byte[]> getSaltMap() {
         return this.saltMap;
+    }
+
+    private String getHashPassword(String login, String password) {
+        try {
+            byte[] salt = PasswordSecurity.getSalt();
+            String hashPassword = PasswordSecurity.getHashPassword(password, salt);
+            addSalt(login, salt);
+            return hashPassword;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

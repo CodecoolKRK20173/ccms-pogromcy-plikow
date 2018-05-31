@@ -40,7 +40,7 @@ public class ManagerMenu extends Menu{
                 if (controller.addMentor(collectInformations())) {
                     view.print("Successfully added");
                 } else {
-                    view.print("Login is not Unique");
+                    view.print("Login is not Unique or error occurred");
                 }
                 break;
             }
@@ -58,7 +58,7 @@ public class ManagerMenu extends Menu{
                 if (controller.addEmployee(collectInformations())) {
                     view.print("Successfully added");
                 } else {
-                    view.print("Login is not Unique");
+                    view.print("Login is not Unique or error occurred");
                 }
                 break;
             }
