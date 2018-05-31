@@ -47,13 +47,17 @@ public class DataContainer {
         assignments.add(assignment);
     }
 
-    public void addStudent(String login, String password, String name, String surname, String eMail) {
+    public boolean addStudent(String login, String password, String name, String surname, String eMail) {
+        if (!isLoginUnique(login)) return false;
         User student = new Student(login, password, name, surname, eMail);
         students.add(student);
+        return true;
     }
-    public void addMentor(String login, String password, String name, String surname, String eMail) {
+    public boolean addMentor(String login, String password, String name, String surname, String eMail) {
+        if (!isLoginUnique(login)) return false;
         User mentor = new User(login, password, name, surname, eMail, MENTOR);
         mentors.add(mentor);
+        return true;
     }
     public void deleteStudent(User student) {
         students.remove(student);
@@ -63,18 +67,22 @@ public class DataContainer {
         mentors.remove(mentor);
     }
 
-    public void addManager(String login, String password, String name, String surname, String eMail) {
+    public boolean addManager(String login, String password, String name, String surname, String eMail) {
+        if (!isLoginUnique(login)) return false;
         User manager = new User(login, password, name, surname, eMail, MANAGER);
         managers.add(manager);
+        return true;
     }
 
     public void deleteManager(User manager) {
         managers.remove(manager);
     }
 
-    public void addRegularEmployee(String login, String password, String name, String surname, String eMail) {
+    public boolean addRegularEmployee(String login, String password, String name, String surname, String eMail) {
+        if (!isLoginUnique(login)) return false;
         User regularEmployee = new User(login, password, name, surname, eMail, REGULAR_EMPLOYEE);
         regularEmployees.add(regularEmployee);
+        return true;
     }
     public void deleteRegularEmployee(User regularEmployee) {
         regularEmployees.remove(regularEmployee);
@@ -128,5 +136,23 @@ public class DataContainer {
             }
         }
         return null;
+    }
+
+    public List<User> collectUsers() {
+        List<User> users = new ArrayList<>();
+
+        users.addAll(this.managers);
+        users.addAll(this.mentors);
+        users.addAll(this.students);
+        users.addAll(this.regularEmployees);
+
+        return users;
+    }
+
+    private boolean isLoginUnique(String login) {
+        for (User user: collectUsers()) {
+            if (user.getLogIn().equals(login)) return false;
+        }
+        return true;
     }
 }

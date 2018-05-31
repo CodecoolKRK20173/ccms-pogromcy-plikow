@@ -33,21 +33,10 @@ public class LogInController {
     }
 
     private User findUser(String logIn) {
-        for (List<User> users: collectUsers()) {
+        for (List<User> users: dataContainer.collectUsers()) {
             User user = dataContainer.getUser(logIn, users);
             if (user != null) return user;
         }
         return null;
-    }
-
-    private List<List<User>> collectUsers() {
-        List<List<User>> users = new ArrayList<>();
-
-        users.add(dataContainer.getManagers());
-        users.add(dataContainer.getMentors());
-        users.add(dataContainer.getStudents());
-        users.add(dataContainer.getRegularEmployees());
-
-        return users;
     }
 }

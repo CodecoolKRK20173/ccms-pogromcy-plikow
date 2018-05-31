@@ -21,9 +21,8 @@ public class ManagerController {
         return data.getMentors();
     }
 
-    public void addMentor(String[] informations) {
-
-        data.addMentor(informations[0], informations[1], informations[2], informations[3], informations[4]);
+    public boolean addMentor(String[] informations) {
+        return data.addMentor(informations[0], informations[1], informations[2], informations[3], informations[4]);
     }
 
     public User getMentor(String login) {
@@ -41,8 +40,8 @@ public class ManagerController {
     }
 
 
-    public void addEmployee(String[] informations) {
-        data.addRegularEmployee(informations[0], informations[1], informations[2], informations[3], informations[4]);
+    public boolean addEmployee(String[] informations) {
+        return data.addRegularEmployee(informations[0], informations[1], informations[2], informations[3], informations[4]);
     }
 
     public void removeEmployee(User user) {

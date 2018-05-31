@@ -4,9 +4,7 @@ import com.codecool.controller.LogInController;
 
 import java.io.Console;
 
-// resolve login repetition
 public class LogInMenu extends Menu {
-    private Menu menu;
     private LogInController logInController;
 
     public LogInMenu() {

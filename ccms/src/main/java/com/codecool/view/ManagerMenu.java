@@ -37,7 +37,11 @@ public class ManagerMenu extends Menu{
                 break;
             }
             case 4: {
-                controller.addMentor(collectInformations());
+                if (controller.addMentor(collectInformations())) {
+                    view.print("Successfully added");
+                } else {
+                    view.print("Login is not Unique");
+                }
                 break;
             }
             case 5: {
@@ -51,7 +55,11 @@ public class ManagerMenu extends Menu{
                 break;
             }
             case 7: {
-                controller.addEmployee(collectInformations());
+                if (controller.addEmployee(collectInformations())) {
+                    view.print("Successfully added");
+                } else {
+                    view.print("Login is not Unique");
+                }
                 break;
             }
             case 8: {

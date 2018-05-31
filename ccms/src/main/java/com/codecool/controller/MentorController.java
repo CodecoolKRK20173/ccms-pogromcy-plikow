@@ -25,8 +25,8 @@ public class MentorController {
     public void gradeAssignment(Assignment assignment, int grade) {
         assignment.setGrade(grade);
     }
-    public void addStudent(String[] informations) {
-        data.addStudent(informations[0], informations[1], informations[2], informations[3], informations[4]);
+    public boolean addStudent(String[] informations) {
+        return data.addStudent(informations[0], informations[1], informations[2], informations[3], informations[4]);
     }
     public void removeStudent(User student) {
         data.deleteStudent(student);
