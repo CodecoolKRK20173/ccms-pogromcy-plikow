@@ -119,4 +119,19 @@ public class UserFileHandler {
         sB.deleteCharAt(sB.length() - 1);
         return sB.toString();
     }
+
+    public void loadSaltMap() {        String line;
+        String separator = ",";
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(saltFilePath));
+
+            while ((line = br.readLine()) != null) {
+                String[] information = line.split(separator);
+                dataContainer.addSalt(information[0], information[1].getBytes());
+            }
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
+    }
 }
