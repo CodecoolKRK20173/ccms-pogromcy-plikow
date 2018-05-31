@@ -25,7 +25,7 @@ public class UserFileHandler {
                 addUser(information);
             }
         } catch (IOException e) {
-            System.out.println("File not found");
+            System.out.println("users.csv: File not found");
         }
     }
 
@@ -80,7 +80,7 @@ public class UserFileHandler {
             writeUsersToFile(dataContainer.getRegularEmployees(), writer);
 
         } catch (IOException e) {
-            System.out.println("File not found");
+            System.out.println("users.csv: File not found");
         }
     }
 
@@ -106,7 +106,7 @@ public class UserFileHandler {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(saltFilePath)))) {
             writer.write(getSaltMapAsString());
         } catch (IOException e) {
-            System.out.println("File not found");
+            System.out.println("salt.csv: File not found");
         }
     }
 
@@ -131,7 +131,7 @@ public class UserFileHandler {
                 dataContainer.addSalt(information[0], information[1].getBytes());
             }
         } catch (IOException e) {
-            System.out.println("File not found");
+            System.out.println("salt.csv: File not found");
         }
     }
 }
