@@ -2,7 +2,9 @@ package com.codecool.model;
 
 import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DataContainer {
     private static final String MENTOR = "mentor";
@@ -13,6 +15,7 @@ public class DataContainer {
     private List<User> managers;
     private List<User> regularEmployees;
     private List<Assignment> assignments;
+    private Map<String, byte[]> saltMap;
     private static DataContainer instance;
 
     private DataContainer() {
@@ -21,6 +24,7 @@ public class DataContainer {
         this.assignments = new ArrayList<Assignment>();
         this.managers = new ArrayList<User>();
         this.regularEmployees = new ArrayList<User>();
+        this.saltMap = new HashMap<String, byte[]>();
     }
 
     public static DataContainer getInstance() {
@@ -154,5 +158,13 @@ public class DataContainer {
             if (user.getLogIn().equals(login)) return false;
         }
         return true;
+    }
+
+    public void addSalt(String login, byte[] salt) {
+        this.saltMap.put(login, salt);
+    }
+
+    public byte[] getSalt(String login) {
+        return this.saltMap.get(login);
     }
 }
