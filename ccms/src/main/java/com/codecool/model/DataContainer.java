@@ -112,8 +112,8 @@ public class DataContainer {
         return null;
     }
 
-    public User getUser(String logIn, List<User> users) {
-        for (User user : users) {
+    public User getUser(String logIn) {
+        for (User user : collectUsers()) {
             if (user.getLogIn().equals(logIn)) {
                 return user;
             }

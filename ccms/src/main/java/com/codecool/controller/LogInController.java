@@ -15,7 +15,7 @@ public class LogInController {
     }
 
     public Menu verifyUserAccount(String logIn, String password) {
-        User user = findUser(logIn);
+        User user = dataContainer.getUser(logIn);
 
         if (user == null) {return null;}
 
@@ -30,13 +30,5 @@ public class LogInController {
         else if (role.equals("student")) return new StudentMenu(logIn);
         else if (role.equals("mentor")) return new RegularEmployeeMenu();
         else return null;
-    }
-
-    private User findUser(String logIn) {
-        for (List<User> users: dataContainer.collectUsers()) {
-            User user = dataContainer.getUser(logIn, users);
-            if (user != null) return user;
-        }
-        return null;
     }
 }
