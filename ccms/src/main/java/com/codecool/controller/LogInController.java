@@ -2,6 +2,7 @@ package com.codecool.controller;
 
 import com.codecool.model.DataContainer;
 import com.codecool.model.User;
+import com.codecool.security.PasswordSecurity;
 import com.codecool.view.*;
 
 import java.util.ArrayList;
@@ -19,9 +20,18 @@ public class LogInController {
 
         if (user == null) {return null;}
 
-        if (!user.getPassword().equals(password)) {return null;}
+        if (isNotPasswordValid(user, password)) {return null;}
 
         return createMenu(user.getRole(), logIn);
+    }
+
+    private boolean isNotPasswordValid(User user, String passwordToValidate) {
+        String password = user.getPassword();
+        byte[] salt = dataContainer.getSalt(user.getLogIn());
+        passwordToValidate = PasswordSecurity.getHashPassword(passwordToValidate, salt);
+
+        if (!password.equals(passwordToValidate)) return true;
+        else return false;
     }
 
     private Menu createMenu(String role, String logIn) {
