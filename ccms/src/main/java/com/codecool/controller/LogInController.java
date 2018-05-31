@@ -41,4 +41,15 @@ public class LogInController {
         else if (role.equals("mentor")) return new RegularEmployeeMenu();
         else return null;
     }
+
+    public void createManagerIfNotExist() {
+        User user = dataContainer.getUser("jurek");
+        if (user == null) {
+            createManager();
+        }
+    }
+
+    private void createManager() {
+        dataContainer.addManager("jurek", "1234", "jurek", "boss", "boss@codecool.com");
+    }
 }

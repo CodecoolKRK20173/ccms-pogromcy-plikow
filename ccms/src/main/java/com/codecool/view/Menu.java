@@ -65,11 +65,13 @@ public abstract class Menu {
 
     protected void saveAllData() {
         userFileHandler.saveUsers();
+        userFileHandler.saveSaltMap();
         assignmentFileHandler.saveAssignments();
     }
 
     protected void loadAllData() {
         userFileHandler.loadUsers();
+        userFileHandler.loadSaltMap();
         assignmentFileHandler.loadAssignments();
     }
 }

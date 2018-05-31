@@ -14,6 +14,7 @@ public class LogInMenu extends Menu {
             "Log in",
         };
         this.logInController = new LogInController();
+        logInController.createManagerIfNotExist();
     }
 
     protected void executeOption(int option) {
