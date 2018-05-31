@@ -2,9 +2,11 @@ package com.codecool.model;
 
 import java.io.*;
 import java.util.List;
+import java.util.Map;
 
 public class UserFileHandler {
-    private String filePath = "src/main/java/resources/users.csv";
+    private String userFilePath = "src/main/java/resources/users.csv";
+    private String saltFilePath = "src/main/java/resources/salt.csv";
     private DataContainer dataContainer;
 
     public UserFileHandler() {
@@ -16,7 +18,7 @@ public class UserFileHandler {
         String separator = ",";
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            BufferedReader br = new BufferedReader(new FileReader(userFilePath));
 
             while ((line = br.readLine()) != null) {
                 String[] information = line.split(separator);
@@ -70,7 +72,7 @@ public class UserFileHandler {
     }
 
     public void saveUsers() {
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath)))) {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(userFilePath)))) {
 
             writeUsersToFile(dataContainer.getManagers(), writer);
             writeUsersToFile(dataContainer.getMentors(), writer);
@@ -98,5 +100,23 @@ public class UserFileHandler {
         result += user.getEmail() + "\n";
 
         return result;
+    }
+
+    public void saveSaltMap() {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(saltFilePath)))) {
+            writer.write(getSaltMapAsString());
+        } catch (IOException e) {
+            System.out.println("File not found");
+        }
+    }
+
+    private String getSaltMapAsString() {
+        StringBuilder sB = new StringBuilder();
+
+        for (Map.Entry<String, byte[]> entry: dataContainer.getSaltMap().entrySet()) {
+            sB.append(String.format("%s,%s\n", entry.getKey(), entry.getValue()));
+        }
+        sB.deleteCharAt(sB.length() - 1);
+        return sB.toString();
     }
 }

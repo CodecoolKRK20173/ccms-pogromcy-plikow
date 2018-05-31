@@ -167,4 +167,8 @@ public class DataContainer {
     public byte[] getSalt(String login) {
         return this.saltMap.get(login);
     }
+
+    public Map<String, byte[]> getSaltMap() {
+        return this.saltMap;
+    }
 }
