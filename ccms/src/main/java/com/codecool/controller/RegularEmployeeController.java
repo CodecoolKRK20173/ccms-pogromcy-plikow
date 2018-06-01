@@ -1,20 +1,20 @@
 package com.codecool.controller;
 
-import com.codecool.model.DataContainer;
+import com.codecool.dao.UsersDAO;
 import com.codecool.model.User;
 
 import java.util.List;
 
 public class RegularEmployeeController {
 
-    private DataContainer data;
+    private UsersDAO usersDAO;
 
     public RegularEmployeeController() {
-        this.data = DataContainer.getInstance();
+        this.usersDAO = new UsersDAO();
 
     }
     public List<User> getStudents() {
-        return data.getStudents();
+        return usersDAO.getAllUsersWithRoles("student");
 
     }
 }

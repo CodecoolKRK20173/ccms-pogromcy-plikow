@@ -1,29 +1,38 @@
 package com.codecool.controller;
 
-import com.codecool.model.DataContainer;
+import com.codecool.dao.UsersDAO;
 import com.codecool.model.User;
+import com.codecool.security.PasswordSecurity;
+import com.codecool.view.*;
+
 
 public class LogInController {
-    private DataContainer dataContainer;
+    private UsersDAO usersDAO;
 
     public LogInController() {
-        dataContainer = DataContainer.getInstance();
+        this.usersDAO = new UsersDAO();
     }
 
-    public boolean validateUserAccount(String logIn, String password, String type) {
-        User user = findUser(logIn, type);
+    public Menu verifyUserAccount(String logIn, String password) {
 
-        if (user == null) {return false;}
+        User user = usersDAO.getData(logIn);
 
-        if (!user.getPassword().equals(password)) {return false;}
+        if (user == null) {return null;}
+        if (!user.getPassword().equals(PasswordSecurity.getHashPassword(password,PasswordSecurity.intTobytes(user.getSalt())))) {return null;}
 
-        return true;
+        return createMenu(user.getRole(), logIn);
     }
 
-    private User findUser(String logIn, String type) {
-        if (type.equals("manager")) {return dataContainer.getManager(logIn);}
-        else if (type.equals("mentor")){return dataContainer.getMentor(logIn);}
-        else if (type.equals("student")){return dataContainer.getStudent(logIn);}
-        else {return dataContainer.getRegularEmployee(logIn);}
+    private Menu createMenu(String role, String logIn) {
+        if (role.equals("manager")) return new ManagerMenu();
+        else if (role.equals("mentor")) return new MentorMenu();
+        else if (role.equals("student")) return new StudentMenu(logIn);
+        else if (role.equals("regular")) return new RegularEmployeeMenu();
+        else return null;
     }
+
+    private User findUser(String logIn) {
+        return usersDAO.getData(logIn);
+    }
+
 }

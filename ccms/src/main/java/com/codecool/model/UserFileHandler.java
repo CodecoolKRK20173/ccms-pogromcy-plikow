@@ -1,6 +1,7 @@
 package com.codecool.model;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class UserFileHandler {
@@ -35,22 +36,6 @@ public class UserFileHandler {
         int surName = 4;
         int eMail = 5;
 
-        if (information[type].equals("manager")) {
-            dataContainer.addManager(
-                    information[logIn],
-                    information[password],
-                    information[name],
-                    information[surName],
-                    information[eMail]);
-        } else if (information[type].equals("mentor")){
-            dataContainer.addMentor(
-                    information[logIn],
-                    information[password],
-                    information[name],
-                    information[surName],
-                    information[eMail]);
-
-        }else if (information[type].equals("student")){
             dataContainer.addStudent(
                     information[logIn],
                     information[password],
@@ -58,24 +43,12 @@ public class UserFileHandler {
                     information[surName],
                     information[eMail]);
 
-        } else {
-                dataContainer.addRegularEmployee(
-                        information[logIn],
-                        information[password],
-                        information[name],
-                        information[surName],
-                        information[eMail]);
-
-            }
     }
 
     public void saveUsers() {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath)))) {
 
-            writeUsersToFile(dataContainer.getManagers(), writer);
-            writeUsersToFile(dataContainer.getMentors(), writer);
-            writeUsersToFile(dataContainer.getStudents(), writer);
-            writeUsersToFile(dataContainer.getRegularEmployees(), writer);
+            writeUsersToFile(Arrays.asList(dataContainer.getStudents()), writer);
 
         } catch (IOException e) {
             System.out.println("File not found");
@@ -92,7 +65,7 @@ public class UserFileHandler {
 
         result += user.getLogIn() + ",";
         result += user.getPassword() + ",";
-        result += user.getType() + ",";
+        result += user.getRole() + ",";
         result += user.getName() + ",";
         result += user.getSurname() + ",";
         result += user.getEmail() + "\n";

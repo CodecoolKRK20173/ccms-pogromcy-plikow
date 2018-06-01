@@ -54,6 +54,29 @@ public class UserInput {
 
     }
 
+    public static boolean isAccept(String message) {
+        clear();
+        boolean unvalidInput = true;
+        boolean result = false;
+
+        while (unvalidInput) {
+            System.out.format("%s?(y/n)", message);
+            String userInput = input.nextLine();
+
+            if (userInput.equals("y")){
+                result = true;
+                unvalidInput = false;
+            }
+            else if(userInput.equals("n")) {
+                unvalidInput = false;
+            }
+            else {
+                System.out.println("Type y or n");
+            }
+        }
+        return result;
+    }
+
     private static void clear() {
         input = new Scanner(System.in);
     }
