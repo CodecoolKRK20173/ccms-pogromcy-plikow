@@ -1,25 +1,24 @@
 package com.codecool.controller;
 
-import com.codecool.model.DataContainer;
+import com.codecool.dao.UsersDAO;
 import com.codecool.model.User;
+import com.codecool.security.PasswordSecurity;
 import com.codecool.view.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class LogInController {
-    private DataContainer dataContainer;
+    private UsersDAO dao;
 
     public LogInController() {
-        dataContainer = DataContainer.getInstance();
+        this.dao = new UsersDAO();
     }
 
     public Menu verifyUserAccount(String logIn, String password) {
-        User user = findUser(logIn);
+
+        User user = dao.getData(logIn);
 
         if (user == null) {return null;}
-
-        if (!user.getPassword().equals(password)) {return null;}
+        if (!user.getPassword().equals(PasswordSecurity.getHashPassword(password,PasswordSecurity.intTobytes(user.getSalt())))) {return null;}
 
         return createMenu(user.getRole(), logIn);
     }
@@ -28,26 +27,12 @@ public class LogInController {
         if (role.equals("manager")) return new ManagerMenu();
         else if (role.equals("mentor")) return new MentorMenu();
         else if (role.equals("student")) return new StudentMenu(logIn);
-        else if (role.equals("mentor")) return new RegularEmployeeMenu();
+        else if (role.equals("regular")) return new RegularEmployeeMenu();
         else return null;
     }
 
     private User findUser(String logIn) {
-        for (List<User> users: collectUsers()) {
-            User user = dataContainer.getUser(logIn, users);
-            if (user != null) return user;
-        }
-        return null;
+        return dao.getData(logIn);
     }
 
-    private List<List<User>> collectUsers() {
-        List<List<User>> users = new ArrayList<>();
-
-        users.add(dataContainer.getManagers());
-        users.add(dataContainer.getMentors());
-        users.add(dataContainer.getStudents());
-        users.add(dataContainer.getRegularEmployees());
-
-        return users;
-    }
 }

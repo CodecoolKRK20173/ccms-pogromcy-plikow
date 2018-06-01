@@ -1,5 +1,6 @@
 package com.codecool.controller;
 
+import com.codecool.dao.UsersDAO;
 import com.codecool.model.DataContainer;
 import com.codecool.model.User;
 import java.util.List;
@@ -7,54 +8,58 @@ import java.util.Map;
 
 public class ManagerController {
 
+    private UsersDAO dao;
     private DataContainer data;
 
     public ManagerController() {
+        this.dao = new UsersDAO();
         this.data = DataContainer.getInstance();
     }
 
     public List<User> getStudents() {
-        return data.getStudents();
+        return dao.getAllRoles("student");
     }
 
     public List<User> getMentors() {
-        return data.getMentors();
+        return dao.getAllRoles("mentor");
     }
 
     public void addMentor(String[] informations) {
 
-        data.addMentor(informations[0], informations[1], informations[2], informations[3], informations[4]);
+        dao.insertData(new User(informations[0], informations[1], informations[2], informations[3], informations[4], "mentor"));
     }
 
     public User getMentor(String login) {
-        return data.getMentor(login);
+        return dao.getData(login);
     }
 
     public void removeMentor(User user) {
-        data.deleteMentor(user);
+        dao.deleteData(user);
     }
 
     public void editMentor(User mentor, Map<String,String> userData) {
         mentor.setName(userData.get("name"));
         mentor.setSurname(userData.get("surname"));
         mentor.setEmail(userData.get("email"));
+        dao.updateData(mentor);
     }
 
 
     public void addEmployee(String[] informations) {
-        data.addRegularEmployee(informations[0], informations[1], informations[2], informations[3], informations[4]);
+        dao.insertData(new User(informations[0], informations[1], informations[2], informations[3], informations[4],"regular"));
+
     }
 
     public void removeEmployee(User user) {
 
-        data.deleteRegularEmployee(user);
+        dao.deleteData(user);
     }
 
     public List<User> getEmployees() {
-        return data.getRegularEmployees();
+        return dao.getAllRoles("regular");
     }
 
     public User getEmployee(String login) {
-        return data.getRegularEmployee(login);
+        return dao.getData(login);
     }
 }
