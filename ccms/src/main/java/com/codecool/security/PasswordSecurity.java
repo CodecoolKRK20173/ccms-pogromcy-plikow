@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-public class passwordSecurity {
+public class PasswordSecurity {
 
     public static String getHashPassword(String password, byte[] salt) {
         String generatedPassword = null;
