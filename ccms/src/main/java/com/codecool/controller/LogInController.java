@@ -21,17 +21,14 @@ public class LogInController {
         if (user == null) {return null;}
 
         if (isNotPasswordValid(user, password)) {return null;}
-
         return createMenu(user.getRole(), logIn);
     }
 
     private boolean isNotPasswordValid(User user, String passwordToValidate) {
         String password = user.getPassword();
-        byte[] salt = dataContainer.getSalt(user.getLogIn());
+        byte[] salt = dataContainer.getSaltMap().get(user.getLogIn()).getBytes();
         passwordToValidate = PasswordSecurity.getHashPassword(passwordToValidate, salt);
-
-        if (!password.equals(passwordToValidate)) return true;
-        else return false;
+        return !password.equals(passwordToValidate);
     }
 
     private Menu createMenu(String role, String logIn) {
@@ -44,9 +41,7 @@ public class LogInController {
 
     public void createManagerIfNotExist() {
         User user = dataContainer.getUser("jurek");
-        if (user == null) {
-            createManager();
-        }
+        if (user == null) createManager();
     }
 
     private void createManager() {

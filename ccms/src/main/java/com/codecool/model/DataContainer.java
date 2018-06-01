@@ -3,6 +3,7 @@ package com.codecool.model;
 import com.codecool.security.PasswordSecurity;
 
 import javax.jws.soap.SOAPBinding;
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 public class DataContainer {
     private static final String MENTOR = "mentor";
+    private static final String STUDENT = "student";
     private static final String REGULAR_EMPLOYEE = "regular employee";
     private static final String MANAGER = "manager";
     private List<User> students;
@@ -18,7 +20,7 @@ public class DataContainer {
     private List<User> managers;
     private List<User> regularEmployees;
     private List<Assignment> assignments;
-    private Map<String, byte[]> saltMap;
+    private Map<String, String> saltMap;
     private static DataContainer instance;
 
     private DataContainer() {
@@ -27,7 +29,7 @@ public class DataContainer {
         this.assignments = new ArrayList<Assignment>();
         this.managers = new ArrayList<User>();
         this.regularEmployees = new ArrayList<User>();
-        this.saltMap = new HashMap<String, byte[]>();
+        this.saltMap = new HashMap<String, String>();
     }
 
     public static DataContainer getInstance() {
@@ -54,6 +56,14 @@ public class DataContainer {
         assignments.add(assignment);
     }
 
+    public void addUser(String login, String password, String name, String surname, String eMail, String role){
+        User user = new User(login, password, name, surname, eMail, role);
+        if (role.equals(MANAGER)) managers.add(user);
+        else if (role.equals(MENTOR)) mentors.add(user);
+        else if (role.equals(STUDENT)) students.add(user);
+        else if (role.equals(REGULAR_EMPLOYEE)) regularEmployees.add(user);
+    }
+
     public boolean addStudent(String login, String password, String name, String surname, String eMail) {
         if (!isLoginUnique(login)) return false;
         String hashPassword = getHashPassword(login, password);
@@ -72,10 +82,12 @@ public class DataContainer {
     }
     public void deleteStudent(User student) {
         students.remove(student);
+        saltMap.remove(student.getLogIn());
     }
   
     public void deleteMentor(User mentor) {
         mentors.remove(mentor);
+        saltMap.remove(mentor.getLogIn());
     }
 
     public boolean addManager(String login, String password, String name, String surname, String eMail) {
@@ -101,6 +113,7 @@ public class DataContainer {
     }
     public void deleteRegularEmployee(User regularEmployee) {
         regularEmployees.remove(regularEmployee);
+        saltMap.remove(regularEmployee.getLogIn());
     }
   
     public List<User> getManagers() {
@@ -172,14 +185,14 @@ public class DataContainer {
     }
 
     public void addSalt(String login, byte[] salt) {
-        this.saltMap.put(login, salt);
+        this.saltMap.put(login, new String(salt));
     }
 
-    public byte[] getSalt(String login) {
+    public String getSalt(String login) {
         return this.saltMap.get(login);
     }
 
-    public Map<String, byte[]> getSaltMap() {
+    public Map<String, String> getSaltMap() {
         return this.saltMap;
     }
 

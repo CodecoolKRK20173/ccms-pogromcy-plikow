@@ -26,11 +26,13 @@ public class PasswordSecurity {
         return generatedPassword;
     }
 
-    public static byte[] getSalt() throws NoSuchAlgorithmException
-    {
-        SecureRandom sr = SecureRandom.getInstance("SHA1PRNG");
-        byte[] salt = new byte[16];
-        sr.nextBytes(salt);
+    public static byte[] getSalt() throws NoSuchAlgorithmException {
+        SecureRandom sr = new SecureRandom();
+        StringBuilder sB = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            sB.append(sr.nextInt(10));
+        }
+        byte[] salt = sB.toString().getBytes();
         return salt;
     }
 }

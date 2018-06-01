@@ -32,43 +32,18 @@ public class UserFileHandler {
     private void addUser(String[] information) {
         int logIn = 0;
         int password = 1;
-        int type = 2;
+        int role = 2;
         int name = 3;
         int surName = 4;
         int eMail = 5;
 
-        if (information[type].equals("manager")) {
-            dataContainer.addManager(
-                    information[logIn],
-                    information[password],
-                    information[name],
-                    information[surName],
-                    information[eMail]);
-        } else if (information[type].equals("mentor")){
-            dataContainer.addMentor(
-                    information[logIn],
-                    information[password],
-                    information[name],
-                    information[surName],
-                    information[eMail]);
-
-        }else if (information[type].equals("student")){
-            dataContainer.addStudent(
-                    information[logIn],
-                    information[password],
-                    information[name],
-                    information[surName],
-                    information[eMail]);
-
-        } else {
-                dataContainer.addRegularEmployee(
-                        information[logIn],
-                        information[password],
-                        information[name],
-                        information[surName],
-                        information[eMail]);
-
-            }
+        dataContainer.addUser(
+                information[logIn],
+                information[password],
+                information[name],
+                information[surName],
+                information[eMail],
+                information[role]);
     }
 
     public void saveUsers() {
@@ -113,14 +88,15 @@ public class UserFileHandler {
     private String getSaltMapAsString() {
         StringBuilder sB = new StringBuilder();
 
-        for (Map.Entry<String, byte[]> entry: dataContainer.getSaltMap().entrySet()) {
-            sB.append(String.format("%s,%s\n", entry.getKey(), entry.getValue()));
+        for (Map.Entry<String, String> entry: dataContainer.getSaltMap().entrySet()) {
+            String salt = entry.getValue();
+            sB.append(String.format("%s,%s\n", entry.getKey(), salt));
         }
-        sB.deleteCharAt(sB.length() - 1);
         return sB.toString();
     }
 
-    public void loadSaltMap() {        String line;
+    public void loadSaltMap() {
+        String line;
         String separator = ",";
 
         try {
@@ -131,7 +107,6 @@ public class UserFileHandler {
                 dataContainer.addSalt(information[0], information[1].getBytes());
             }
         } catch (IOException e) {
-            System.out.println("salt.csv: File not found");
         }
     }
 }
