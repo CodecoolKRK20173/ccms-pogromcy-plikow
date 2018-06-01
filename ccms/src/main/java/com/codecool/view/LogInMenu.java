@@ -1,9 +1,10 @@
 package com.codecool.view;
 
 import com.codecool.controller.LogInController;
-// resolve login repetition
+
+import java.io.Console;
+
 public class LogInMenu extends Menu {
-    private Menu menu;
     private LogInController logInController;
 
     public LogInMenu() {
@@ -16,13 +17,14 @@ public class LogInMenu extends Menu {
     }
 
     protected void executeOption(int option) {
+        Console console = System.console();
         String logIn;
         String password;
         switch (option) {
             case 1: {
-                // extract to method
                 logIn = UserInput.getString("Login: ");
-                password = UserInput.getString("Password");
+                view.print("Password:");
+                password = new String(console.readPassword());
                 Menu menu = logInController.verifyUserAccount(logIn, password);
                 if (menu != null) {
                     menu.run();
