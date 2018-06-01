@@ -1,5 +1,6 @@
 package com.codecool.security;
 
+import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -33,4 +34,16 @@ public class passwordSecurity {
         sr.nextBytes(salt);
         return salt;
     }
+
+    public static int bytesToInt( byte[] bytes ) {
+        int result = 0;
+        for (int i=0; i<4; i++) {
+            result = ( result << 8 ) - Byte.MIN_VALUE + (int) bytes[i];
+        }
+        return result;
+    }
+    public static byte[] intTobytes(int i){
+        return ByteBuffer.allocate(16).array();
+    }
+
 }
