@@ -1,23 +1,46 @@
 package com.codecool.model;
 
+import com.codecool.security.PasswordSecurity;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedHashMap;
+
 
 public class User {
     private String logIn;
     private String password;
     private String name;
+    private int salt;
     private String surname;
     private String eMail;
     private String role;
 
+
     public User(String logIn, String password, String name, String surname, String eMail, String role) {
-        this.logIn = logIn;
+        this(logIn, name, surname, eMail, role);
+
+        try {
+            this.salt = PasswordSecurity.bytesToInt(PasswordSecurity.getSalt());
+            this.password = PasswordSecurity.getHashPassword(password, PasswordSecurity.intTobytes(salt));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public User(String logIn, String password, String name, String surname, String eMail, String role, int salt) {
+        this(logIn, name, surname, eMail, role);
+
+        this.salt = salt;
         this.password = password;
+    }
+
+    public User(String logIn, String name, String surname, String eMail, String role){
+        this.logIn = logIn;
         this.name = name;
         this.surname = surname;
         this.eMail = eMail;
         this.role = role;
     }
+
 
     public String getLogIn() {
         return logIn;
@@ -51,6 +74,10 @@ public class User {
         return result;
     }
 
+    public int getSalt(){
+        return this.salt;
+    }
+
     public void setLogIn(String logIn) {
         this.logIn = logIn;
     }
@@ -80,4 +107,7 @@ public class User {
                 + " " + role);
         return sb.toString();
     }
+
+
+
 }
