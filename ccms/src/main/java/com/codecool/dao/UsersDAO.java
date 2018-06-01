@@ -1,7 +1,7 @@
 package com.codecool.dao;
 
 import com.codecool.model.User;
-import com.codecool.security.PasswordSecurity;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +86,7 @@ public class UsersDAO implements  DAOInterface <User> {
         return false;
     }
 
-    public List<User> getAllRoles(String role) {
+    public List<User> getAllUsersWithRoles(String role) {
 
        List<User> result = new ArrayList<>();
         String sql = "SELECT *  "

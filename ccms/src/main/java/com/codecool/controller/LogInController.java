@@ -7,15 +7,15 @@ import com.codecool.view.*;
 
 
 public class LogInController {
-    private UsersDAO dao;
+    private UsersDAO usersDAO;
 
     public LogInController() {
-        this.dao = new UsersDAO();
+        this.usersDAO = new UsersDAO();
     }
 
     public Menu verifyUserAccount(String logIn, String password) {
 
-        User user = dao.getData(logIn);
+        User user = usersDAO.getData(logIn);
 
         if (user == null) {return null;}
         if (!user.getPassword().equals(PasswordSecurity.getHashPassword(password,PasswordSecurity.intTobytes(user.getSalt())))) {return null;}
@@ -32,7 +32,7 @@ public class LogInController {
     }
 
     private User findUser(String logIn) {
-        return dao.getData(logIn);
+        return usersDAO.getData(logIn);
     }
 
 }

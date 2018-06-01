@@ -8,58 +8,58 @@ import java.util.Map;
 
 public class ManagerController {
 
-    private UsersDAO dao;
+    private UsersDAO usersDAO;
     private DataContainer data;
 
     public ManagerController() {
-        this.dao = new UsersDAO();
+        this.usersDAO = new UsersDAO();
         this.data = DataContainer.getInstance();
     }
 
     public List<User> getStudents() {
-        return dao.getAllRoles("student");
+        return usersDAO.getAllUsersWithRoles("student");
     }
 
     public List<User> getMentors() {
-        return dao.getAllRoles("mentor");
+        return usersDAO.getAllUsersWithRoles("mentor");
     }
 
     public void addMentor(String[] informations) {
 
-        dao.insertData(new User(informations[0], informations[1], informations[2], informations[3], informations[4], "mentor"));
+        usersDAO.insertData(new User(informations[0], informations[1], informations[2], informations[3], informations[4], "mentor"));
     }
 
     public User getMentor(String login) {
-        return dao.getData(login);
+        return usersDAO.getData(login);
     }
 
     public void removeMentor(User user) {
-        dao.deleteData(user);
+        usersDAO.deleteData(user);
     }
 
     public void editMentor(User mentor, Map<String,String> userData) {
         mentor.setName(userData.get("name"));
         mentor.setSurname(userData.get("surname"));
         mentor.setEmail(userData.get("email"));
-        dao.updateData(mentor);
+        usersDAO.updateData(mentor);
     }
 
 
     public void addEmployee(String[] informations) {
-        dao.insertData(new User(informations[0], informations[1], informations[2], informations[3], informations[4],"regular"));
+        usersDAO.insertData(new User(informations[0], informations[1], informations[2], informations[3], informations[4],"regular"));
 
     }
 
     public void removeEmployee(User user) {
 
-        dao.deleteData(user);
+        usersDAO.deleteData(user);
     }
 
     public List<User> getEmployees() {
-        return dao.getAllRoles("regular");
+        return usersDAO.getAllUsersWithRoles("regular");
     }
 
     public User getEmployee(String login) {
-        return dao.getData(login);
+        return usersDAO.getData(login);
     }
 }

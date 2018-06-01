@@ -4,17 +4,16 @@ import com.codecool.dao.UsersDAO;
 import com.codecool.model.Assignment;
 import com.codecool.model.DataContainer;
 import com.codecool.model.Student;
-import com.codecool.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentController {
-    private UsersDAO dao;
+    private UsersDAO usersDAO;
     private DataContainer dataContainer;
 
     public StudentController() {
-        this.dao = new UsersDAO();
+        this.usersDAO = new UsersDAO();
         this.dataContainer = DataContainer.getInstance();
     }
 
